@@ -412,7 +412,49 @@ public int maxProfit(int[] prices) {
 }
 ```
 &nbsp;
+### 309. Best Time to Buy and Sell Stock with Cooldown
+Say you have an array for which the ith element is the price of a given stock on day i.
 
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times) with the following restrictions:
+*You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).*
+*After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)*
+
+**Example:**
+```
+Input: [1,2,3,0,2]
+Output: 3 
+Explanation: transactions = [buy, sell, cooldown, buy, sell]
+```
+#### Solution:
+buy[i] means before day i what is the maxProfit for any sequence end with buy.
+
+sell[i] means before day i what is the maxProfit for any sequence end with sell.
+
+rest[i] means before day i what is the maxProfit for any sequence end with rest.
+```
+buy[i]  = max(rest[i-1]-price, buy[i-1]) 
+sell[i] = max(buy[i-1]+price, sell[i-1])
+rest[i] = max(sell[i-1], buy[i-1], rest[i-1])
+```
+Well, the answer lies within the fact that buy[i] <= rest[i] which means rest[i] = max(sell[i-1], rest[i-1]). That made sure [buy, rest, buy] is never occurred.
+
+A further observation is that and rest[i] <= sell[i] is also true therefore
+```
+rest[i] = sell[i-1]
+```
+```
+public int maxProfit(int[] prices) {
+    int sell = 0, prev_sell = 0, buy = Integer.MIN_VALUE, prev_buy;
+    for (int price : prices) {
+        prev_buy = buy;
+        buy = Math.max(prev_sell - price, prev_buy);
+        prev_sell = sell;
+        sell = Math.max(prev_buy + price, prev_sell);
+    }
+    return sell;
+}
+```
+&nbsp;
 ### 139. Word Break
 Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
 **Note:**
@@ -637,7 +679,76 @@ public int minimumTotal(List<List<Integer>> triangle) {
     return dp[0];
 }
 ```
+&nbsp;
+### *322. Coin Change*
+You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
 
+**Example:**
+```
+Input: coins = [1, 2, 5], amount = 11
+Output: 3 
+Explanation: 11 = 5 + 5 + 1
+```
+#### Solution:
+Top-down:
+
+The idea is very classic dynamic programming: think of the last step we take. Suppose we have already found out the best way to sum up to amount a, then for the last step, we can choose any coin type which gives us a remainder r where *r = a-coins[i]* for all i's. For every remainder, go through exactly the same process as before until either the remainder is 0 or less than 0 (meaning not a valid solution). With this idea, the only remaining detail is to store the minimum number of coins needed to sum up to r so that we don't need to recompute it over and over again.
+```
+public int coinChange(int[] coins, int amount) {
+    if(amount<1) return 0;
+    return helper(coins, amount, new int[amount]);
+}
+
+private int helper(int[] coins, int rem, int[] count) { // rem: remaining coins after the last step; count[rem]: minimum number of coins to sum up to rem
+    if(rem<0) return -1; // not valid
+    if(rem==0) return 0; // completed
+    if(count[rem-1] != 0) return count[rem-1]; // already computed, so reuse
+    int min = Integer.MAX_VALUE;
+    for(int coin : coins) {
+        int res = helper(coins, rem-coin, count);
+        if(res>=0 && res < min)
+            min = 1+res;
+    }
+    count[rem-1] = (min==Integer.MAX_VALUE) ? -1 : min;
+    return count[rem-1];
+}
+```
+Bottom-up:
+```
+public int coinChange(int[] coins, int amount) {
+    int max = amount + 1;             
+    int[] dp = new int[amount + 1];  
+    Arrays.fill(dp, max);  
+    dp[0] = 0;   
+    for (int i = 1; i <= amount; i++) {
+        for (int j = 0; j < coins.length; j++) {
+            if (coins[j] <= i) {
+                dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+            }
+        }
+    }
+    return dp[amount] > amount ? -1 : dp[amount];
+}
+```
+&nbsp;
+### *338. Counting Bits*
+Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1's in their binary representation and return them as an array.
+
+**Example:**
+For num = 5 you should return [0,1,1,2,1,2].
+#### Solution:
+```
+public int[] countBits(int num) {
+
+    int[] bits = new int[num + 1];    
+    for(int i = 1; i <= num; i++){
+        bits[i] = bits[i/2];
+        if(i%2 == 1) bits[i]++; 
+    }
+    return bits;
+}
+```
+With this idea, we can also resolve this problem using [bit manipulation](https://wzvincent.github.io/2018/06/11/bit-manipulation/).
 &nbsp;
 &nbsp;
 &nbsp;
