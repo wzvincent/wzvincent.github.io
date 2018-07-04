@@ -439,9 +439,11 @@ rest[i] = max(sell[i-1], buy[i-1], rest[i-1])
 Well, the answer lies within the fact that buy[i] <= rest[i] which means rest[i] = max(sell[i-1], rest[i-1]). That made sure [buy, rest, buy] is never occurred.
 
 A further observation is that and rest[i] <= sell[i] is also true therefore
+
 ```
 rest[i] = sell[i-1]
 ```
+
 ```
 public int maxProfit(int[] prices) {
     int sell = 0, prev_sell = 0, buy = Integer.MIN_VALUE, prev_buy;
@@ -454,20 +456,26 @@ public int maxProfit(int[] prices) {
     return sell;
 }
 ```
+
 &nbsp;
+
 ### 139. Word Break
+
 Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
 **Note:**
 The same word in the dictionary may be reused multiple times in the segmentation.
 You may assume the dictionary does not contain duplicate words.
 
 **Example:**
+
 ```
 Input: s = "leetcode", wordDict = ["leet", "code"]
 Output: true
 Explanation: Return true because "leetcode" can be segmented as "leet code".
 ```
+
 #### Solution:
+
 dp[i] stands for the string from s[0] to s[i] could be represented by words in dist.
 ```
 public boolean wordBreak(String s, List<String> wordDict) {
@@ -485,9 +493,11 @@ public boolean wordBreak(String s, List<String> wordDict) {
     return dp[s.length()];
 }
 ```
+
 &nbsp;
 
 ### 198. House Robber
+
 You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
 
 Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
@@ -499,8 +509,11 @@ Output: 12
 Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
              Total amount you can rob = 2 + 9 + 1 = 12.
 ```
+
 #### Solution:
+
 For every house, we could make 2 decisions, rob or not.
+
 ```
 public int rob(int[] nums) {
     int prevNo = 0; 	// No: means we don't rob the current house
@@ -513,20 +526,26 @@ public int rob(int[] nums) {
     return Math.max(prevNo, prevYes);
 }
 ```
+
 &nbsp;
+
 ### 213. House Robber II
+
 You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are arranged in a circle. That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
 
 Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
 
 **Example:**
+
 ```
 Input: [1,2,3,1]
 Output: 4
 Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
              Total amount you can rob = 1 + 3 = 4.
 ```
+
 #### Solution:
+
 Result = max (robFirstHouse, notrob);
 ```
     public int rob(int[] nums) {
@@ -545,24 +564,32 @@ Result = max (robFirstHouse, notrob);
         return Math.max(prevNo, prevYes);
     }
 ```
+
 &nbsp;
 &nbsp;
+
 ### 264. Ugly Number II
+
 Write a program to find the n-th ugly number.
 Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.
 **Example:**
+
 ```
 Input: n = 10
 Output: 12
 Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.
 ``` 
+
 #### Solution:
+
 because every number can only be divided by 2, 3, 5, one way to look at the sequence is to split the sequence to three groups as below:
+
 ```
 (1) 1×2, 2×2, 3×2, 4×2, 5×2, …
 (2) 1×3, 2×3, 3×3, 4×3, 5×3, …
 (3) 1×5, 2×5, 3×5, 4×5, 5×5, …
 ```
+
 ```
 public int nthUglyNumber(int n) {
     int index2 = 0, index3 = 0, index5 = 0;
@@ -580,18 +607,23 @@ public int nthUglyNumber(int n) {
     return ugly[n-1];
 }
 ```
+
 &nbsp;
 
 ### 279. Perfect Squares
+
 Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, ...) which sum to n.
 
 **Example:**
+
 ```
 Input: n = 13
 Output: 2
 Explanation: 13 = 4 + 9.
 ```
+
 #### Solution:
+
 dp[n] indicates that the perfect squares count of the given n, and we have:
 ```
 dp[0] = 0 
@@ -615,7 +647,9 @@ dp[13] = Min{ dp[13-1*1]+1, dp[13-2*2]+1, dp[13-3*3]+1 }
 						.1
 dp[n] = Min{ dp[n - i*i] + 1 },  n - i*i >=0 && i >= 1
 ```
+
 &nbsp;
+
 ```
 public int numSquares(int n) {
     int[] dp = new int[n + 1];
@@ -646,10 +680,56 @@ public int numSquares(int n) {
     return dp[n];
 }
 ```
+
+&nbsp;
+
+### 343. Integer Break
+
+Given a positive integer n, break it into the sum of at least two positive integers and maximize the product of those integers. Return the maximum product you can get.
+
+For example, given n = 2, return 1 (2 = 1 + 1); given n = 10, return 36 (10 = 3 + 3 + 4).
+
+Note: You may assume that n is not less than 2 and not larger than 58.
+
+#### Solution:
+
+dp[i] stores the max product from i. Suppose we *break the number i* to j (j < i) and i - j, we want to compare dp[i] and j * (i - j) in each iteration. However, j or i - j maybe break into multiple smaller numbers to get greater product itself.
+
+```
+public int integerBreak(int n) {
+    int[] dp = new int[n+1];
+    dp[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        for (int j = 1; j < i; j++) {
+            dp[i] = Math.max( dp[i], Math.max(j, dp[j]) * Math.max(i-j, dp[i-j]) );
+        }
+    }
+    return dp[n];
+}
+```
+Math trick method:
+
+```
+public int integerBreak(int n) {
+    if(n==2) return 1;
+    if(n==3) return 2;
+    int product = 1;
+    while(n>4){
+        product*=3;
+        n-=3;
+    }
+    product*=n;
+    
+    return product;
+}
+```
+
 &nbsp;
 &nbsp;
 > ### Bottom-Up
+
 ### 120. Triangle
+
 Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
 
 For example, given the following triangle
