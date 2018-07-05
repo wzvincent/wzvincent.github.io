@@ -179,6 +179,57 @@ public int lengthOfLIS(int[] nums) {
     return size;  
 } 
 ```
+
+&nbsp;
+### *368. Largest Divisible Subset*
+Given a set of distinct positive integers, find the largest subset such that every pair (Si, Sj) of elements in this subset satisfies: Si % Sj = 0 or Sj % Si = 0.
+
+If there are multiple solutions, return any subset is fine.
+**Example:**
+
+```
+nums: [1,2,3]
+
+Result: [1,2] (of course, [1,3] will also be ok)
+```
+
+#### Solution:
+1. Sort the array
+2. For each element in nums, find the length of largest subset it has.
+3. Record every item's prev in the subset.
+4. Return the subset due to the prev chain.
+```
+public List<Integer> largestDivisibleSubset(int[] nums) {
+    int[] dp = new int[nums.length];
+    int[] pre = new int[nums.length];
+    Arrays.sort(nums);
+    int max = 0, index = -1;
+    for (int i = 0; i < nums.length; i++) {
+        dp[i] = 1;
+        pre[i] = -1;
+        for (int j = i-1; j >= 0; j--) {
+            if (nums[i] % nums[j] == 0) {
+                if (dp[j]+1 > dp[i]) {
+                    dp[i] = dp[j] + 1;
+                    pre[i] = j;
+                }
+            }
+            
+        }
+        if (dp[i] > max) {
+            max = dp[i];
+            index = i;
+        }
+    }
+    List<Integer> res = new ArrayList<Integer>();
+    while (index != -1) {
+        res.add(nums[index]);
+        index = pre[index];
+    }
+    return res;
+}
+```
+
 &nbsp;
 &nbsp;
 &nbsp;
