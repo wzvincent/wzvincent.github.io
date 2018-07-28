@@ -7,6 +7,7 @@ tags:
     - leetcode
     - DFS
 ---
+># <font color=red>Recursion/font>
 ### *98. Validate Binary Search Tree*
 Given a binary tree, determine if it is a valid binary search tree (BST).
 
@@ -14,7 +15,7 @@ Assume a BST is defined as follows:
 * The left subtree of a node contains only nodes with keys less than the node's key.
 * The right subtree of a node contains only nodes with keys greater than the node's key.
 * Both the left and right subtrees must also be binary search trees.
-
+<!-- more -->
 #### Solution:
 With Stack (In-order Traversal):
 ```
@@ -47,5 +48,104 @@ public class Solution {
         if (root.val >= maxVal || root.val <= minVal) return false;
         return isValidBST(root.left, minVal, root.val) && isValidBST(root.right, root.val, maxVal);
     }
+}
+```
+&nbsp;
+### *100. Same Tree*
+Given two binary trees, write a function to check if they are the same or not.
+
+Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
+
+**Example:**
+```
+Input:     1         1
+          / \       / \
+         2   3     2   3
+
+        [1,2,3],   [1,2,3]
+
+Output: true
+
+Input:     1         1
+          / \       / \
+         2   1     1   2
+
+        [1,2,1],   [1,1,2]
+
+Output: false
+```
+#### Solution:
+Use rescursion
+```
+ public boolean isSameTree(TreeNode p, TreeNode q) {
+     if (p == null && q == null) {
+         return true;
+     }
+     if (p == null || q == null) {
+         return false;
+     }
+     if (p.val == q.val) {
+         return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+     } else {
+         return false;
+     }
+ }
+```
+&nbsp;
+### *101. Symmetric Tree*
+Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+
+For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
+```
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+```
+But the following [1,2,2,null,3,null,3] is not:
+```
+
+    1
+   / \
+  2   2
+   \   \
+   3    3
+```
+#### Solution:
+```
+public boolean isSymmetric(TreeNode root) {
+        return helper(root, root);
+    }
+    
+public boolean helper(TreeNode n1, TreeNode n2) {
+    if (n1 == null && n2 == null) return true;
+    if (n1 == null || n2 == null) return false;
+    return (n1.val == n2.val) && helper(n1.left, n2.right) && helper(n2.left, n1.right);
+}
+```
+&nbsp;
+### *101. Symmetric Tree*
+Given a binary tree, find its maximum depth.
+
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+**Example:**
+Given binary tree [3,9,20,null,null,15,7],
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+return its depth = 3.
+#### Solution:
+```
+public int maxDepth(TreeNode root) {
+    if(root==null){
+        return 0;
+    }
+    return 1+Math.max(maxDepth(root.left),maxDepth(root.right));
 }
 ```

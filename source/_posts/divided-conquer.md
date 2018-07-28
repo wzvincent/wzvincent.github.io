@@ -23,7 +23,7 @@ Explanation:
 (2*((3-4)*5)) = -10 
 (((2*3)-4)*5) = 10
 ```
-
+<!-- more -->
 #### Solution:
 ```
 public List<Integer> diffWaysToCompute(String input) {
