@@ -7,7 +7,7 @@ tags:
     - leetcode
     - DFS
 ---
-># <font color=red>Recursion/font>
+># <font color=red>Recursion Problem of Tree </font>
 ### *98. Validate Binary Search Tree*
 Given a binary tree, determine if it is a valid binary search tree (BST).
 
@@ -125,7 +125,7 @@ public boolean helper(TreeNode n1, TreeNode n2) {
 }
 ```
 &nbsp;
-### *101. Symmetric Tree*
+### *104. Maximum Depth of Binary Tree*
 Given a binary tree, find its maximum depth.
 
 The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
@@ -147,5 +147,51 @@ public int maxDepth(TreeNode root) {
         return 0;
     }
     return 1+Math.max(maxDepth(root.left),maxDepth(root.right));
+}
+```
+
+&nbsp;
+### *105. Construct Binary Tree from Preorder and Inorder Traversal*
+Given preorder and inorder traversal of a tree, construct the binary tree.
+Note:
+You may assume that duplicates do not exist in the tree.
+
+For example, given
+```
+preorder = [3,9,20,15,7]
+inorder = [9,3,15,20,7]
+```
+Return the following binary tree:
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+#### Solution:
+The basic idea is here:
+Say we have 2 arrays, PRE and IN.
+Preorder traversing implies that PRE[0] is the root node.
+Then we can find this PRE[0] in IN, say it's IN[5].
+Now we know that IN[5] is root, so we know that IN[0] - IN[4] is on the left side, IN[6] to the end is on the right side.
+Recursively doing this on subarrays, we can build a tree out of it :
+```
+public TreeNode buildTree(int[] preorder, int[] inorder) {
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    for (int i = 0; i < inorder.length; i++) {
+        map.put(inorder[i], i);
+    }
+    return helper(0, preorder.length-1, 0, inorder.length-1, preorder, inorder, map);
+}
+
+public TreeNode helper(int preStart, int preEnd, int inStart, int inEnd, int[] preorder, int[] inorder, Map<Integer, Integer> inMap) {
+    if(preStart > preEnd || inStart > inEnd) return null;
+    TreeNode root = new TreeNode(preorder[preStart]);
+    int inRoot = inMap.get(root.val);
+    int len = inRoot - inStart;
+    root.left = helper(preStart+1, preStart+len, inStart, inRoot-1, preorder, inorder, inMap);
+    root.right = helper(preStart+len+1, preEnd, inRoot+1, inEnd, preorder, inorder, inMap);
+    return root;
 }
 ```
