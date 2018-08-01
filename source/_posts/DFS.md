@@ -195,3 +195,24 @@ public TreeNode helper(int preStart, int preEnd, int inStart, int inEnd, int[] p
     return root;
 }
 ```
+For postorder and inorder:
+```
+public TreeNode buildTree(int[] inorder, int[] postorder) {
+    if (inorder == null || postorder == null || inorder.length != postorder.length) return null;
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    for (int i = 0; i < inorder.length; i++) {
+        map.put(inorder[i], i);
+    }
+    return helper(0, inorder.length-1, 0, postorder.length-1, inorder, postorder, map);
+}
+
+public TreeNode helper(int inStart, int inEnd, int postStart, int postEnd, int[] inorder, int[] postorder, Map<Integer, Integer> inMap){
+    if (postStart > postEnd || inStart > inEnd) return null;
+    TreeNode root = new TreeNode(postorder[postEnd]);
+    int inRoot = inMap.get(root.val);
+    int len = inRoot - inStart;
+    root.left = helper(inStart, inRoot-1, postStart, postStart+len-1, inorder, postorder, inMap);
+    root.right = helper(inRoot+1, inEnd, postStart+len, postEnd-1, inorder, postorder, inMap);
+    return root;
+}
+```
