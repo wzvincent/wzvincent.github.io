@@ -216,3 +216,97 @@ public TreeNode helper(int inStart, int inEnd, int postStart, int postEnd, int[]
     return root;
 }
 ```
+&nbsp;
+### *108. Convert Sorted Array to Binary Search Tree*
+Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
+
+For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
+
+**Example:**
+```
+Given the sorted array: [-10,-3,0,5,9],
+
+One possible answer is: [0,-3,9,-10,null,5], which represents the following height balanced BST:
+
+      0
+     / \
+   -3   9
+   /   /
+ -10  5
+```
+#### Solution:
+Find the middle item of the array as root
+```
+public TreeNode sortedArrayToBST(int[] nums) {
+    if(nums.length==0)
+        return null;
+    TreeNode node = findMiddle(nums,0,nums.length-1);
+    return node;
+}
+
+public TreeNode findMiddle(int[]num, int left, int right){
+    if(left>right)
+        return null;
+    int mid = (left+right)/2;
+    TreeNode root = new TreeNode(num[mid]);
+    root.left = findMiddle(num,left,mid-1);
+    root.right = findMiddle(num, mid+1, right);
+    return root;
+}
+```
+For Sorted List, use two pointers to find the middle item
+```
+public TreeNode sortedListToBST(ListNode head) {
+    if(head==null)
+        return null;
+    return toBST(head,null);
+}
+
+public TreeNode toBST(ListNode head, ListNode tail){
+    if(head==tail)
+        return null;
+    ListNode fast = head;
+    ListNode slow = head;
+    while(fast!=tail&&fast.next!=tail){
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    TreeNode root = new TreeNode(slow.val);
+    root.left = toBST(head,slow);
+    root.right = toBST(slow.next,tail);
+    return root;
+}
+```
+&nbsp;
+### *110. Balanced Binary Tree*
+Given a binary tree, determine if it is height-balanced.
+
+For this problem, a height-balanced binary tree is defined as:
+> a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
+
+**Example:**
+Given the following tree [3,9,20,null,null,15,7]:
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+Return true.
+#### Solution:
+```
+public boolean isBalanced(TreeNode root) {
+    if(root == null)
+        return true;
+    if(Math.abs(treeHeight(root.left)-treeHeight(root.right))>1)
+        return false;
+    return isBalanced(root.left)&&isBalanced(root.right);
+}
+
+public int treeHeight(TreeNode node){
+    if(node == null)
+        return 0;
+    return Math.max(treeHeight(node.left),treeHeight(node.right))+1;
+}
+```
