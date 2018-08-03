@@ -149,7 +149,22 @@ public int maxDepth(TreeNode root) {
     return 1+Math.max(maxDepth(root.left),maxDepth(root.right));
 }
 ```
+For the **Minimum Depth of Binary Tree**
+Given a binary tree, find its minimum depth.
 
+The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+#### Solution:
+```
+public int minDepth(TreeNode root) {
+    if(root == null)
+        return 0;
+    if(root.left == null)
+        return minDepth(root.right)+1;
+    if(root.right == null)
+        return minDepth(root.left)+1;
+    return Math.min(minDepth(root.left),minDepth(root.right))+1;
+}
+```
 &nbsp;
 ### *105. Construct Binary Tree from Preorder and Inorder Traversal*
 Given preorder and inorder traversal of a tree, construct the binary tree.
