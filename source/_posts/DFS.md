@@ -325,3 +325,75 @@ public int treeHeight(TreeNode node){
     return Math.max(treeHeight(node.left),treeHeight(node.right))+1;
 }
 ```
+&nbsp;
+### *112. Path Sum*
+Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
+
+Note: A leaf is a node with no children.
+**Example:**
+Given the below binary tree and sum = 22,
+```
+      5
+     / \
+    4   8
+   /   / \
+  11  13  4
+ /  \      \
+7    2      1
+```
+return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
+#### Solution:
+```
+public boolean hasPathSum(TreeNode root, int sum) {
+    if (root == null) return false;
+    sum = sum - root.val;
+    if (root.left == null && root.right == null) {
+        if (sum == 0) return true;
+        else return false;
+    }
+    return hasPathSum(root.left, sum) || hasPathSum(root.right, sum);
+}
+```
+&nbsp;
+### *113. Path Sum II*
+Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
+**Example:**
+Given the below binary tree and sum = 22,
+```
+      5
+     / \
+    4   8
+   /   / \
+  11  13  4
+ /  \    / \
+7    2  5   1
+```
+Return:
+```
+[
+   [5,4,11,2],
+   [5,8,4,5]
+]
+```
+#### Solution:
+```
+public List<List<Integer>> pathSum(TreeNode root, int sum) {
+    List<List<Integer>> result = new LinkedList<List<Integer>>();
+    List<Integer> currentResult = new LinkedList<Integer>();
+    pathSum(root, sum, currentResult, result);
+    return result;
+}
+public void pathSum(TreeNode root, int sum, List<Integer> currentResult, List<List<Integer>> result) {
+    if (root == null) return;
+    currentResult.add(root.val);
+    if (root.left == null && root.right == null && sum == root.val) {
+        result.add(new LinkedList(currentResult));
+        currentResult.remove(currentResult.size() - 1);
+        return;
+    } else {
+        pathSum(root.left, sum - root.val, currentResult, result);
+        pathSum(root.right, sum - root.val, currentResult, result);
+    }
+    currentResult.remove(currentResult.size() - 1);
+}
+```
