@@ -124,6 +124,7 @@ public boolean helper(TreeNode n1, TreeNode n2) {
     return (n1.val == n2.val) && helper(n1.left, n2.right) && helper(n2.left, n1.right);
 }
 ```
+[A BFS Method]()
 &nbsp;
 ### *104. Maximum Depth of Binary Tree*
 Given a binary tree, find its maximum depth.
