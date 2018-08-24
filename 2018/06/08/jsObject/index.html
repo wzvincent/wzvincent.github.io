@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Understanding Objects Type of Properties Data PropertiesData properties contain a single location for a data value. Data properties have four attributes describing their behavior:">
+<meta name="keywords" content="javascript,js learnNote,object">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript Object Creation">
+<meta property="og:url" content="http://yoursite.com/2018/06/08/jsObject/index.html">
+<meta property="og:site_name" content="wzvincent">
+<meta property="og:description" content="Understanding Objects Type of Properties Data PropertiesData properties contain a single location for a data value. Data properties have four attributes describing their behavior:">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-27T22:19:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript Object Creation">
+<meta name="twitter:description" content="Understanding Objects Type of Properties Data PropertiesData properties contain a single location for a data value. Data properties have four attributes describing their behavior:">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/08/jsObject/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript Object Creation | wzvincent</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wzvincent</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/08/jsObject/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhan Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wzvincent">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript Object Creation
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-08 11:24:52" itemprop="dateCreated datePublished" datetime="2018-06-08T11:24:52-05:00">2018-06-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-06-27 17:19:02" itemprop="dateModified" datetime="2018-06-27T17:19:02-05:00">2018-06-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/front-end/" itemprop="url" rel="index"><span itemprop="name">front end</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Understanding-Objects"><a href="#Understanding-Objects" class="headerlink" title="Understanding Objects"></a>Understanding Objects</h2><blockquote>
+<h3 id="Type-of-Properties"><a href="#Type-of-Properties" class="headerlink" title="Type of Properties"></a>Type of Properties</h3></blockquote>
+<h4 id="Data-Properties"><a href="#Data-Properties" class="headerlink" title="Data Properties"></a>Data Properties</h4><p>Data properties <code>contain a single location for a data value</code>. Data properties have four attributes describing their behavior:<br><a id="more"></a></p>
+<ul>
+<li><strong>[[Configurable]]</strong>: <code>default: true</code> Indicates if the property may be redefined by removing the property via delete, changing the property’s attributes, or changing the property into an accessor property.</li>
+<li><strong>[[Enumerable]]</strong>: <code>default: true</code> Indicates if the property will be returned in a for-in loop.</li>
+<li><strong>[[Writable]]</strong>: <code>default: true</code>  Indicates if the property’s value can be changed. </li>
+<li><strong>[[Value]]</strong>: <code>default: undefin</code> Contains the actual data value for the property. This is the location from which the property’s value is read and the location to which new values are saved.</li>
+</ul>
+<p>To change any of the default property attributes, you must use the ECMAScript 5 <code>Object.defineProperty()</code> method. This method accepts three arguments: the object on which the property should be added or modified, the name of the property, and a descriptor object. The properties on the descriptor object match the attribute names: <em>configurable</em>, <em>enumerable</em>, <em>writable</em>, and <em>value</em>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;&#125;;</span><br><span class="line">Object.defineProperty(person, “name”, &#123;</span><br><span class="line">    writable: false,</span><br><span class="line">    value: “Nicholas”</span><br><span class="line">&#125;);</span><br><span class="line">alert(person.name); //”Nicholas”</span><br><span class="line">person.name = “Greg”;</span><br><span class="line">alert(person.name); //”Nicholas”</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;&#125;;</span><br><span class="line">Object.defineProperty(person, &quot;name&quot;, &#123;</span><br><span class="line">    configurable: false,</span><br><span class="line">    value: &quot;Nicholas&quot;</span><br><span class="line">&#125;);</span><br><span class="line">alert(person.name); //”Nicholas”</span><br><span class="line">delete person.name;</span><br><span class="line">alert(person.name); //”Nicholas”</span><br></pre></td></tr></table></figure>
+<h4 id="Accessor-Properties-访问器属性"><a href="#Accessor-Properties-访问器属性" class="headerlink" title="Accessor Properties (访问器属性)"></a>Accessor Properties (访问器属性)</h4><p>Accessor properties <strong>do not</strong> <code>contain a data value</code>. Instead, they contain a combination of a getter function and a setter function (though both are not necessary). When an accessor property is <strong>read from</strong>, the <code>getter</code> function is called, and it’s the function’s responsibility to return a valid value; when Understanding Objects an accessor property is <strong>written to</strong>, a <code>setter</code> function is called with the new value, and that function must decide how to react to the data. Accessor properties have four attributes:</p>
+<ul>
+<li><strong>[[Configurable]]</strong> <code>default: true</code></li>
+<li><strong>[[Enumerable]]</strong> <code>default: true</code></li>
+<li><strong>[[Get]]</strong> <code>default: undefined</code></li>
+<li><strong>[[Set]]</strong> <code>default: undefined</code></li>
+</ul>
+<p>It is not possible to define an accessor property explicitly; you must use <code>Object.defineProperty()</code><br>Here’s a simple example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;</span><br><span class="line">    _year: 2004,</span><br><span class="line">    edition: 1</span><br><span class="line">&#125;;</span><br><span class="line">Object.defineProperty(book, “year”, &#123;</span><br><span class="line">    get: function()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    set: function(newValue)&#123;</span><br><span class="line">        if (newValue &gt; 2004) &#123;</span><br><span class="line">            this._year = newValue;</span><br><span class="line">            this.edition += newValue - 2004;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">book.year = 2005;</span><br><span class="line">alert(book.edition); //2</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;</p>
+<h2 id="Object-Creation"><a href="#Object-Creation" class="headerlink" title="Object Creation"></a>Object Creation</h2><blockquote>
+<h3 id="The-Factory-Pattern"><a href="#The-Factory-Pattern" class="headerlink" title="The Factory Pattern"></a>The Factory Pattern</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function createPerson(name, age, job)&#123;</span><br><span class="line">    var o = new Object();</span><br><span class="line">    o.name = name;</span><br><span class="line">    o.age = age;</span><br><span class="line">    o.job = job;</span><br><span class="line">    o.sayName = function()&#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;;</span><br><span class="line">    return o;</span><br><span class="line">&#125;</span><br><span class="line">var person1 = createPerson(“Nicholas”, 29, “Software Engineer”);</span><br><span class="line">var person2 = createPerson(“Greg”, 27, “Doctor”);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&nbsp;<br>&nbsp;</p>
+<blockquote>
+<h3 id="The-Constructor-Pattern"><a href="#The-Constructor-Pattern" class="headerlink" title="The Constructor Pattern"></a>The Constructor Pattern</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age, job)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">    this.job = job;</span><br><span class="line">    this.sayName = function()&#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line">var person1 = new Person(“Nicholas”, 29, “Software Engineer”);</span><br><span class="line">var person2 = new Person(“Greg”, 27, “Doctor”);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="features"><a href="#features" class="headerlink" title="features"></a>features</h4><ul>
+<li>There is no object being created explicitly.</li>
+<li>The properties and method are assigned directly onto the <em>this</em> object.</li>
+<li>There is no return statement.</li>
+</ul>
+<p>Calling a constructor in this manner essentially causes the following four steps to be taken:</p>
+<ol>
+<li>Create a new object.</li>
+<li>Assign the <code>this</code> value of the constructor to the new object (so this points to the new object).</li>
+<li>Execute the code inside the constructor (adds properties to the new object).</li>
+<li>Return the new object.</li>
+</ol>
+<p>Each of the objects in this example is considered to be both an instance of Object and an instance of Person, as indicated by using the instanceof operator like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alert(person1 instanceof Object); //true</span><br><span class="line">alert(person1 instanceof Person); //true</span><br><span class="line">alert(person2 instanceof Object); //true</span><br><span class="line">alert(person2 instanceof Person); //true</span><br></pre></td></tr></table></figure></p>
+<h4 id="Constructors-as-Functions"><a href="#Constructors-as-Functions" class="headerlink" title="Constructors as Functions"></a>Constructors as Functions</h4><p>The only <em>difference</em> between constructor functions and other functions is <code>the way in which they are called</code>.<br>Any function that is called with the <code>new operator</code> acts as a constructor.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//use as a constructor</span><br><span class="line">var person = new Person(“Nicholas”, 29, “Software Engineer”);</span><br><span class="line">person.sayName(); //”Nicholas”</span><br><span class="line"></span><br><span class="line">//call as a function</span><br><span class="line">Person(“Greg”, 27, “Doctor”); //adds to window</span><br><span class="line">window.sayName(); //”Greg”</span><br><span class="line"></span><br><span class="line">//call in the scope of another object</span><br><span class="line">var o = new Object();</span><br><span class="line">Person.call(o, “Kristen”, 25, “Nurse”);</span><br><span class="line">o.sayName(); //”Kristen”</span><br></pre></td></tr></table></figure></p>
+<h4 id="Two-ways-of-define-function-in-constructor"><a href="#Two-ways-of-define-function-in-constructor" class="headerlink" title="Two ways of define function in constructor"></a>Two ways of define function in constructor</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age, job)&#123; </span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">    this.job = job;</span><br><span class="line">    this.sayName = new Function(“alert(this.name)”);  //logical equivalent</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(person1.sayName == person2.sayName); //false</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age, job)&#123; this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">    this.job = job;</span><br><span class="line">    this.sayName = sayName;</span><br><span class="line">&#125;</span><br><span class="line">function sayName()&#123;</span><br><span class="line">    alert(this.name);</span><br><span class="line">&#125;</span><br><span class="line">var person1 = new Person(“Nicholas”, 29, “Software Engineer”); </span><br><span class="line">var person2 = new Person(“Greg”, 27, “Doctor”);</span><br></pre></td></tr></table></figure>
+<p>&nbsp;<br>&nbsp;</p>
+<blockquote>
+<h3 id="The-Prototype-Pattern"><a href="#The-Prototype-Pattern" class="headerlink" title="The Prototype Pattern"></a>The Prototype Pattern</h3><p>The benefit of using the prototype is that all of its properties and methods are shared among object instances. Instead of assigning object information in the constructor, they can be assigned directly to the prototype.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.name = “Nicholas”; </span><br><span class="line">Person.prototype.age = 29; </span><br><span class="line">Person.prototype.job = “Software Engineer”; </span><br><span class="line">Person.prototype.sayName = function()&#123;</span><br><span class="line">    alert(this.name); </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var person1 = new Person(); </span><br><span class="line">person1.sayName(); //”Nicholas”</span><br><span class="line">var person2 = new Person();</span><br><span class="line">person2.sayName(); //”Nicholas” </span><br><span class="line">alert(person1.sayName == person2.sayName); //true</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>the <strong>isPrototypeOf()</strong> method can be used to determine if this relationship exists between objects. Essentially, isPrototypeOf() returns true if [[Prototype]] points to the prototype on which the method is being called, as shown here:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert(Person.prototype.isPrototypeOf(person1)); //true</span><br><span class="line">alert(Person.prototype.isPrototypeOf(person2)); //true</span><br></pre></td></tr></table></figure></p>
+<p>ECMAScript 5 adds a new method called <strong>Object.getPrototypeOf()</strong>, which returns the value of [[Prototype]] in all supporting implementations. For example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert(Object.getPrototypeOf(person1) == Person.prototype); //true</span><br><span class="line">alert(Object.getPrototypeOf(person1).name); //”Nicholas”</span><br></pre></td></tr></table></figure></p>
+<p>Whenever a property is accessed for reading on an object, a <em>search</em> is started to find a property with that name. The search begins on the <strong>object instance itself</strong>. If a property with the given name is found on the instance, then that value is returned; if the property is not found, then the search continues up the <strong>pointer to the prototype</strong>, and the prototype is searched for a property with the same name. If the property is found on the prototype, then that value is returned. </p>
+<p>Although it’s possible to read values on the prototype from object instances, it is <strong>not possible</strong> to overwrite them. If you add a property to an instance that has the same name as a property on the prototype, you create the property on the instance, which then <strong>masks</strong> the property on the prototype.<br>Here’s an example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.name = “Nicholas”;</span><br><span class="line">Person.prototype.age = 29;</span><br><span class="line">Person.prototype.job = “Software Engineer”;</span><br><span class="line">Person.prototype.sayName = function()&#123;</span><br><span class="line">    alert(this.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var person1 = new Person();</span><br><span class="line">var person2 = new Person();</span><br><span class="line">person1.name = “Greg”;</span><br><span class="line">alert(person1.name); //”Greg” - from instance</span><br><span class="line">alert(person2.name); //”Nicholas” - from prototype</span><br></pre></td></tr></table></figure></p>
+<p>Once a property is added to the object instance, it <strong>shadows</strong> any properties of the same name on the prototype, which means that <strong>it blocks access to the property on the prototype without altering it</strong>. Even setting the property to null only sets the property on the instance and doesn’t restore the link to the prototype. The delete operator, however, completely removes the instance property and allows the prototype property to be accessed again as follows:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">delete person1.name;</span><br><span class="line">alert(person1.name); //”Nicholas” - from the prototype</span><br></pre></td></tr></table></figure></p>
+<p>The <strong>hasOwnProperty()</strong> method determines if a property exists on the instance or on the prototype. This method, which is inherited from Object, returns true only if a property of the given name exists on the object instance, as in this example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.name = “Nicholas”;</span><br><span class="line">Person.prototype.age = 29;</span><br><span class="line">Person.prototype.job = “Software Engineer”;</span><br><span class="line">Person.prototype.sayName = function()&#123;</span><br><span class="line">    alert(this.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var person1 = new Person();</span><br><span class="line">var person2 = new Person();</span><br><span class="line"></span><br><span class="line">alert(person1.hasOwnProperty(“name”)); //false</span><br><span class="line">person1.name = “Greg”;</span><br><span class="line">alert(person1.name); //”Greg” - from instance</span><br><span class="line">alert(person1.hasOwnProperty(“name”)); //true</span><br><span class="line"></span><br><span class="line">delete person1.name;</span><br><span class="line">alert(person1.name); //”Nicholas” - from the prototype</span><br><span class="line">alert(person1.hasOwnProperty(“name”)); //false</span><br></pre></td></tr></table></figure></p>
+<h4 id="Difference-with-‘in’-Operator"><a href="#Difference-with-‘in’-Operator" class="headerlink" title="Difference with ‘in’ Operator:"></a>Difference with ‘in’ Operator:</h4><blockquote>
+<p>Since the <strong>in operator</strong> always returns true <em>so long as the property is accessible by the object</em>, and <strong>hasOwnProperty()</strong> returns true <em>only if the property exists on the instance</em>, a prototype property can be determined if the in operator returns true but hasOwnProperty() returns false.</p>
+</blockquote>
+<h4 id="Point-to-which-constructor"><a href="#Point-to-which-constructor" class="headerlink" title="Point to which constructor?"></a>Point to which constructor?</h4><p>the Person.prototype property is set equal to a new object created<br>with an object literal. The end result is the same, with one <strong>exception</strong>: <em>the constructor property no longer points to Person</em>. When a function is created, its prototype object is created and the constructor is automatically assigned. Essentially, this syntax overwrites the default prototype object completely, meaning that <em>the constructor property is equal to that of a completely new object (the Object constructor)</em> instead of the function itself. Although the instanceof operator still works reliably, you cannot rely on the constructor to indicate the type of object, as this example shows:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var friend = new Person();</span><br><span class="line">alert(friend.constructor == Person); //true</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    name : “Nicholas”,</span><br><span class="line">    age : 29,</span><br><span class="line">    job : “Software Engineer”,</span><br><span class="line">    sayName : function () &#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var friend1 = new Person();</span><br><span class="line">alert(friend1 instanceof Object); //true</span><br><span class="line">alert(friend1 instanceof Person); //true</span><br><span class="line">alert(friend1.constructor == Person); //false</span><br><span class="line">alert(friend1.constructor == Object); //true</span><br></pre></td></tr></table></figure></p>
+<p>Here, instanceof still returns true for both Object and Person, but the constructor property is now equal to Object instead of Person. <em>If the constructor’s value is important, you can set it specifically back to the appropriate value</em>, as shown here:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    constructor: Person,</span><br><span class="line">    name : “Nicholas”,</span><br><span class="line">    age : 29,</span><br><span class="line">    job : “Software Engineer”,</span><br><span class="line">    sayName : function () &#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>Keep in mind that restoring the constructor in this manner creates a property with <em>[[Enumerable]] set to true</em>. Native constructor properties are not enumerable by default, so if you’re using an ECMAScript 5–compliant JavaScript engine, you may wish to use <em>Object.defineProperty()</em> instead:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    name : “Nicholas”,</span><br><span class="line">    age : 29,</span><br><span class="line">    job : “Software Engineer”,</span><br><span class="line">    sayName : function () &#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//ECMAScript 5 only – restore the constructor</span><br><span class="line">Object.defineProperty(Person.prototype, “constructor”, &#123;</span><br><span class="line">    enumerable: false,</span><br><span class="line">    value: Person</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="Dynamic-Nature-of-Prototypes"><a href="#Dynamic-Nature-of-Prototypes" class="headerlink" title="Dynamic Nature of Prototypes"></a>Dynamic Nature of Prototypes</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var friend= new Person();</span><br><span class="line">Person.prototype.sayHi = function()&#123;</span><br><span class="line">    alert(“hi”);</span><br><span class="line">&#125;;</span><br><span class="line">friend.sayHi(); //”hi” - works!</span><br></pre></td></tr></table></figure>
+<p>In this code, an instance of Person is created and stored in friend. The next statement adds a method called sayHi() to Person.prototype. <em>Even though the friend instance was created prior to this change, it still has access to the new method.</em> This happens because of the loose link between the instance and the prototype. When friend.sayHi() is called, the instance is first searched for a property named sayHi; when it’s not found, the search continues to the prototype. Since the link between the instance and the prototype is simply a pointer, not a copy, the search finds the new sayHi property on the prototype and returns the function stored there.</p>
+<p>The [[Prototype]] pointer is assigned when the constructor is called, so <em>changing the prototype to a different object</em> severs the tie between the constructor and the original prototype. Remember: <strong>the instance has a pointer to only the prototype, not to the constructor.</strong> Consider the following:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var friend = new Person();</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    constructor: Person,</span><br><span class="line">    name : “Nicholas”,</span><br><span class="line">    age : 29,</span><br><span class="line">    job : “Software Engineer”,</span><br><span class="line">    sayName : function () &#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">friend.sayName(); //error</span><br></pre></td></tr></table></figure></p>
+<h4 id="Problems-with-Prototypes"><a href="#Problems-with-Prototypes" class="headerlink" title="Problems with Prototypes"></a>Problems with Prototypes</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    constructor: Person,</span><br><span class="line">    name : “Nicholas”,</span><br><span class="line">    age : 29,</span><br><span class="line">    job : “Software Engineer”,</span><br><span class="line">    friends : [“Shelby”, “Court”],</span><br><span class="line">    sayName : function () &#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var person1 = new Person();</span><br><span class="line">var person2 = new Person();</span><br><span class="line">person1.friends.push(“Van”);</span><br><span class="line"></span><br><span class="line">alert(person1.friends); //”Shelby,Court,Van”</span><br><span class="line">alert(person2.friends); //”Shelby,Court,Van”</span><br><span class="line">alert(person1.friends === person2.friends); //true</span><br></pre></td></tr></table></figure>
+<p>Here, the Person.prototype object has a property called friends that contains an array of strings. Two instances of Person are then created. The person1.friends array is altered by adding another string. Because the friends array <strong>exists on Person.prototype, not on person1</strong>, the changes made are also reflected on person2.friends (which points to the same array).</p>
+<p>&nbsp;<br>&nbsp;</p>
+<blockquote>
+<h3 id="Combination-Constructor-Prototype-Pattern"><a href="#Combination-Constructor-Prototype-Pattern" class="headerlink" title="Combination Constructor/Prototype Pattern"></a>Combination Constructor/Prototype Pattern</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age, job)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">    this.job = job;</span><br><span class="line">    this.friends = [“Shelby”, “Court”];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    constructor: Person,</span><br><span class="line">    sayName : function () &#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var person1 = new Person(“Nicholas”, 29, “Software Engineer”);</span><br><span class="line">var person2 = new Person(“Greg”, 27, “Doctor”);</span><br><span class="line">person1.friends.push(“Van”);</span><br><span class="line"></span><br><span class="line">alert(person1.friends); //”Shelby,Court,Van”</span><br><span class="line">alert(person2.friends); //”Shelby,Court”</span><br><span class="line">alert(person1.friends === person2.friends); //false</span><br><span class="line">alert(person1.sayName === person2.sayName); //true</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&nbsp;<br>&nbsp;</p>
+<blockquote>
+<h3 id="Dynamic-Prototype-Pattern"><a href="#Dynamic-Prototype-Pattern" class="headerlink" title="Dynamic Prototype Pattern"></a>Dynamic Prototype Pattern</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age, job)&#123;</span><br><span class="line">    //properties</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">    this.job = job;</span><br><span class="line">    //methods</span><br><span class="line">    if (typeof this.sayName != “function”)&#123;</span><br><span class="line">        Person.prototype.sayName = function()&#123;</span><br><span class="line">            alert(this.name);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var friend = new Person(“Nicholas”, 29, “Software Engineer”);</span><br><span class="line">friend.sayName();</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&nbsp;<br>&nbsp;</p>
+<blockquote>
+<h3 id="Parasitic-Constructor-Pattern"><a href="#Parasitic-Constructor-Pattern" class="headerlink" title="Parasitic Constructor Pattern"></a>Parasitic Constructor Pattern</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function SpecialArray()&#123;</span><br><span class="line"></span><br><span class="line">    //create the array</span><br><span class="line">    var values = new Array();</span><br><span class="line"></span><br><span class="line">    //add the values</span><br><span class="line">    values.push.apply(values, arguments);</span><br><span class="line"></span><br><span class="line">    //assign the method</span><br><span class="line">    values.toPipedString = function()&#123;</span><br><span class="line">    return this.join(“|”);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    //return it</span><br><span class="line">    return values;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var colors = new SpecialArray(“red”, “blue”, “green”);</span><br><span class="line">alert(colors.toPipedString()); //”red|blue|green”</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&nbsp;<br>&nbsp;</p>
+<blockquote>
+<h3 id="Durable-Constructor-Pattern"><a href="#Durable-Constructor-Pattern" class="headerlink" title="Durable Constructor Pattern"></a>Durable Constructor Pattern</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age, job)&#123;</span><br><span class="line">    //create the object to return</span><br><span class="line">    var o = new Object();</span><br><span class="line"></span><br><span class="line">    //optional: define private variables/functions here</span><br><span class="line">    //attach methods</span><br><span class="line">    o.sayName = function()&#123;</span><br><span class="line">    alert(name);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    //return the object</span><br><span class="line">    return o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var friend = Person(“Nicholas”, 29, “Software Engineer”);</span><br><span class="line">friend.sayName(); //”Nicholas”</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>The person variable is a durable object, and there is <em>no way to access any of its data members without calling a method.</em> Even if some other code adds methods or data members to the object, there is <strong>no way to access the original data that was passed into the constructor.</strong> Such security makes the durable constructor pattern useful when dealing with secure execution environments.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/js-learnNote/" rel="tag"># js learnNote</a>
+          
+            <a href="/tags/object/" rel="tag"># object</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/07/axios/" rel="next" title="Axios">
+                <i class="fa fa-chevron-left"></i> Axios
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/11/bit-manipulation/" rel="prev" title="Bit Manipulation">
+                Bit Manipulation <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="Zhan Wang" />
+            
+              <p class="site-author-name" itemprop="name">Zhan Wang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/wzvincent" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="wwzzvin626@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-Objects"><span class="nav-number">1.</span> <span class="nav-text">Understanding Objects</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Type-of-Properties"><span class="nav-number">1.1.</span> <span class="nav-text">Type of Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Properties"><span class="nav-number">1.1.1.</span> <span class="nav-text">Data Properties</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accessor-Properties-访问器属性"><span class="nav-number">1.1.2.</span> <span class="nav-text">Accessor Properties (访问器属性)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-Creation"><span class="nav-number">2.</span> <span class="nav-text">Object Creation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Factory-Pattern"><span class="nav-number">2.1.</span> <span class="nav-text">The Factory Pattern</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Constructor-Pattern"><span class="nav-number">2.2.</span> <span class="nav-text">The Constructor Pattern</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#features"><span class="nav-number">2.2.1.</span> <span class="nav-text">features</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Constructors-as-Functions"><span class="nav-number">2.2.2.</span> <span class="nav-text">Constructors as Functions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Two-ways-of-define-function-in-constructor"><span class="nav-number">2.2.3.</span> <span class="nav-text">Two ways of define function in constructor</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Prototype-Pattern"><span class="nav-number">2.3.</span> <span class="nav-text">The Prototype Pattern</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Difference-with-‘in’-Operator"><span class="nav-number">2.3.1.</span> <span class="nav-text">Difference with ‘in’ Operator:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Point-to-which-constructor"><span class="nav-number">2.3.2.</span> <span class="nav-text">Point to which constructor?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dynamic-Nature-of-Prototypes"><span class="nav-number">2.3.3.</span> <span class="nav-text">Dynamic Nature of Prototypes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Problems-with-Prototypes"><span class="nav-number">2.3.4.</span> <span class="nav-text">Problems with Prototypes</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Combination-Constructor-Prototype-Pattern"><span class="nav-number">2.4.</span> <span class="nav-text">Combination Constructor/Prototype Pattern</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Prototype-Pattern"><span class="nav-number">2.5.</span> <span class="nav-text">Dynamic Prototype Pattern</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parasitic-Constructor-Pattern"><span class="nav-number">2.6.</span> <span class="nav-text">Parasitic Constructor Pattern</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Durable-Constructor-Pattern"><span class="nav-number">2.7.</span> <span class="nav-text">Durable Constructor Pattern</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Zhan Wang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhan Wang</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

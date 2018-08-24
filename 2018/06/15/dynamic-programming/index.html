@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Longest XXX Substring / Subarray / Subsequence 5. Longest Palindromic SubstringGiven a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000. Exam">
+<meta name="keywords" content="leetcode,dynamic programming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dynamic Programming">
+<meta property="og:url" content="http://yoursite.com/2018/06/15/dynamic-programming/index.html">
+<meta property="og:site_name" content="wzvincent">
+<meta property="og:description" content="Longest XXX Substring / Subarray / Subsequence 5. Longest Palindromic SubstringGiven a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000. Exam">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-13T20:27:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dynamic Programming">
+<meta name="twitter:description" content="Longest XXX Substring / Subarray / Subsequence 5. Longest Palindromic SubstringGiven a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000. Exam">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/15/dynamic-programming/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Dynamic Programming | wzvincent</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wzvincent</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/dynamic-programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhan Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wzvincent">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Dynamic Programming
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-15 15:52:12" itemprop="dateCreated datePublished" datetime="2018-06-15T15:52:12-05:00">2018-06-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-13 15:27:34" itemprop="dateModified" datetime="2018-07-13T15:27:34-05:00">2018-07-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<h1 id="Longest-XXX-Substring-Subarray-Subsequence"><a href="#Longest-XXX-Substring-Subarray-Subsequence" class="headerlink" title="Longest XXX Substring / Subarray / Subsequence"></a><font color="red">Longest XXX Substring / Subarray / Subsequence</font></h1></blockquote>
+<h3 id="5-Longest-Palindromic-Substring"><a href="#5-Longest-Palindromic-Substring" class="headerlink" title="5. Longest Palindromic Substring"></a><em>5. Longest Palindromic Substring</em></h3><p>Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.</p>
+<p><strong>Example 1:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;babad&quot;</span><br><span class="line">Output: &quot;bab&quot;</span><br><span class="line">Note: &quot;aba&quot; is also a valid answer.</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p><strong>Example 2:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;cbbd&quot;</span><br><span class="line">Output: &quot;bb&quot;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h4><blockquote>
+<p>D[i][j] represents whether s(i … j) can form a palindromic substring, D[i][j] is true when s(i) equals to s(j) and s(i+1 … j-1) is a palindromic substring. When we found a palindrome, check if it’s the longest one. Time complexity O(n^2).<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public static String longestPalindrome(String s) &#123;</span><br><span class="line">        if (s == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        int len = s.length();</span><br><span class="line">        boolean[][] D = new boolean[len][len];</span><br><span class="line">        int max = 0;</span><br><span class="line">        int retB = 0;</span><br><span class="line">        int retE = 0;</span><br><span class="line">        for (int j = 0; j &lt; len; j++) &#123;</span><br><span class="line">            for (int i = 0; i &lt;= j; i++) &#123;</span><br><span class="line">                if (s.charAt(i) == s.charAt(j) &amp;&amp; (j - i &lt;= 2 || D[i + 1][j - 1]))&#123;</span><br><span class="line">                    D[i][j] = true;</span><br><span class="line">                    if (j - i + 1 &gt; max) &#123;</span><br><span class="line">                        retB = i;</span><br><span class="line">                        retE = j;</span><br><span class="line">                        max = j - i + 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; </span><br><span class="line">                else &#123;</span><br><span class="line">                    D[i][j] = false;</span><br><span class="line">                &#125;            </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return s.substring(retB, retE + 1);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>&nbsp;</p>
+<h3 id="53-Maximum-Subarray"><a href="#53-Maximum-Subarray" class="headerlink" title="53. Maximum Subarray"></a><em>53. Maximum Subarray</em></h3><p>Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [-2,1,-3,4,-1,2,1,-5,4],</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: [4,-1,2,1] has the largest sum = 6.</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution:"></a>Solution:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int maxSubArray(int[] nums) &#123;</span><br><span class="line">        int local = nums[0];</span><br><span class="line">        int global = nums[0];</span><br><span class="line">        for (int i = 1; i&lt;nums.length; i++)&#123;</span><br><span class="line">            local = Math.max(nums[i],local+nums[i]);</span><br><span class="line">            global = Math.max(local,global);</span><br><span class="line">        &#125;</span><br><span class="line">        return global;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public int maxSubArray(int[] A) &#123;</span><br><span class="line">    int n = A.length;</span><br><span class="line">    int[] dp = new int[n];//dp[i] means the maximum subarray ending with A[i];</span><br><span class="line">    dp[0] = A[0];</span><br><span class="line">    int max = dp[0];        </span><br><span class="line">    for(int i = 1; i &lt; n; i++)&#123;</span><br><span class="line">        dp[i] = A[i] + (dp[i - 1] &gt; 0 ? dp[i - 1] : 0);</span><br><span class="line">        max = Math.max(max, dp[i]);</span><br><span class="line">    &#125;      </span><br><span class="line">    return max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="152-Maximum-Product-Subarray"><a href="#152-Maximum-Product-Subarray" class="headerlink" title="152. Maximum Product Subarray"></a><em>152. Maximum Product Subarray</em></h3><p>Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,3,-2,4]</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: [2,3] has the largest product 6.</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution:"></a>Solution:</h4><p>Due to a negative num * negative num could be a positive num, so we need to record the local min num as minhere.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public int maxProduct(int[] A) &#123;</span><br><span class="line">    if (A.length == 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int maxherepre = A[0];</span><br><span class="line">    int minherepre = A[0];</span><br><span class="line">    int maxsofar = A[0];</span><br><span class="line">    int maxhere, minhere;</span><br><span class="line"></span><br><span class="line">    for (int i = 1; i &lt; A.length; i++) &#123;</span><br><span class="line">        maxhere = Math.max(Math.max(maxherepre * A[i], minherepre * A[i]), A[i]);</span><br><span class="line">        minhere = Math.min(Math.min(maxherepre * A[i], minherepre * A[i]), A[i]);</span><br><span class="line">        maxsofar = Math.max(maxhere, maxsofar);</span><br><span class="line">        maxherepre = maxhere;</span><br><span class="line">        minherepre = minhere;</span><br><span class="line">    &#125;</span><br><span class="line">    return maxsofar;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;</p>
+<h3 id="300-Longest-Increasing-Subsequence"><a href="#300-Longest-Increasing-Subsequence" class="headerlink" title="300. Longest Increasing Subsequence"></a><em>300. Longest Increasing Subsequence</em></h3><p>Given an unsorted array of integers, find the length of longest increasing subsequence.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [10,9,2,5,3,7,101,18]</span><br><span class="line">Output: 4 </span><br><span class="line">Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.</span><br></pre></td></tr></table></figure></p>
+<p>Note:</p>
+<p>There may be more than one LIS combination, it is only necessary for you to return the length.<br>Your algorithm should run in O(n2) complexity.</p>
+<h4 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution:"></a>Solution:</h4><p>let dp[i] be the max length of subsequence ended by nums[i]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public int lengthOfLIS(int[] nums) &#123;</span><br><span class="line">    if(nums == null || nums.length == 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    int len = nums.length, max = 0;</span><br><span class="line">    int[] dp = new int[len];</span><br><span class="line">    </span><br><span class="line">    for(int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">        dp[i] = 1;</span><br><span class="line">        for(int j = 0; j &lt; i; j++) &#123;</span><br><span class="line">            if(nums[i] &gt; nums[j]) &#123;</span><br><span class="line">                dp[i] = Math.max(dp[j]+1, dp[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        max = Math.max(max, dp[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>use binary search to optimize:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int lengthOfLIS(int[] nums) &#123;  </span><br><span class="line">    int[] increasing = new int[nums.length];  </span><br><span class="line">    int size = 0;  </span><br><span class="line">    for(int i=0; i&lt;nums.length; i++) &#123;  </span><br><span class="line">        int left=0, right=size-1;  </span><br><span class="line">        while (left&lt;=right) &#123;  </span><br><span class="line">            int m=(left+right)/2;  </span><br><span class="line">            if (nums[i] &gt; increasing[m]) left = m + 1;  </span><br><span class="line">            else right = m - 1;  </span><br><span class="line">        &#125;  </span><br><span class="line">        increasing[left] = nums[i];  </span><br><span class="line">        if (left==size) size ++;  </span><br><span class="line">    &#125;  </span><br><span class="line">    return size;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;</p>
+<h3 id="368-Largest-Divisible-Subset"><a href="#368-Largest-Divisible-Subset" class="headerlink" title="368. Largest Divisible Subset"></a><em>368. Largest Divisible Subset</em></h3><p>Given a set of distinct positive integers, find the largest subset such that every pair (Si, Sj) of elements in this subset satisfies: Si % Sj = 0 or Sj % Si = 0.</p>
+<p>If there are multiple solutions, return any subset is fine.<br><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nums: [1,2,3]</span><br><span class="line"></span><br><span class="line">Result: [1,2] (of course, [1,3] will also be ok)</span><br></pre></td></tr></table></figure>
+<h4 id="Solution-4"><a href="#Solution-4" class="headerlink" title="Solution:"></a>Solution:</h4><ol>
+<li>Sort the array</li>
+<li>For each element in nums, find the length of largest subset it has.</li>
+<li>Record every item’s prev in the subset.</li>
+<li>Return the subset due to the prev chain.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;Integer&gt; largestDivisibleSubset(int[] nums) &#123;</span><br><span class="line">    int[] dp = new int[nums.length];</span><br><span class="line">    int[] pre = new int[nums.length];</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    int max = 0, index = -1;</span><br><span class="line">    for (int i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">        dp[i] = 1;</span><br><span class="line">        pre[i] = -1;</span><br><span class="line">        for (int j = i-1; j &gt;= 0; j--) &#123;</span><br><span class="line">            if (nums[i] % nums[j] == 0) &#123;</span><br><span class="line">                if (dp[j]+1 &gt; dp[i]) &#123;</span><br><span class="line">                    dp[i] = dp[j] + 1;</span><br><span class="line">                    pre[i] = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        if (dp[i] &gt; max) &#123;</span><br><span class="line">            max = dp[i];</span><br><span class="line">            index = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;Integer&gt; res = new ArrayList&lt;Integer&gt;();</span><br><span class="line">    while (index != -1) &#123;</span><br><span class="line">        res.add(nums[index]);</span><br><span class="line">        index = pre[index];</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;</p>
+<blockquote>
+<h1 id="One-Dimension-DP"><a href="#One-Dimension-DP" class="headerlink" title="One Dimension DP"></a><font color="red">One Dimension DP</font></h1></blockquote>
+<h3 id="70-Climbing-Stairs"><a href="#70-Climbing-Stairs" class="headerlink" title="70. Climbing Stairs"></a><em>70. Climbing Stairs</em></h3><p>You are climbing a stair case. It takes n steps to reach to the top.</p>
+<p>Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</p>
+<p>Note: Given n will be a positive integer.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: 3</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: There are three ways to climb to the top.</span><br><span class="line">1. 1 step + 1 step + 1 step</span><br><span class="line">2. 1 step + 2 steps</span><br><span class="line">3. 2 steps + 1 step</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-5"><a href="#Solution-5" class="headerlink" title="Solution:"></a>Solution:</h4><blockquote>
+<p>The total number of ways to reach ith step is equal to sum of ways of reaching (i - 1)th step and ways of reaching (i - 2)th step.<br><em>State Transition Equation:&nbsp; dp[i] = dp[i-1] + dp[i-2]</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public int climbStairs(int n) &#123;</span><br><span class="line">    if(n==1)</span><br><span class="line">        return 1;</span><br><span class="line">    int[]dp = new int[n+1];</span><br><span class="line">    dp[1] = 1;</span><br><span class="line">    dp[2] = 2;</span><br><span class="line">    for(int i = 3; i&lt;=n; i++)&#123;</span><br><span class="line">        dp[i] = dp[i-1]+dp[i-2];</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>&nbsp;</p>
+<h3 id="91-Decode-Ways"><a href="#91-Decode-Ways" class="headerlink" title="91. Decode Ways"></a><em>91. Decode Ways</em></h3><p>A message containing letters from A-Z is being encoded to numbers using the following mapping:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&apos;A&apos; -&gt; 1</span><br><span class="line">&apos;B&apos; -&gt; 2</span><br><span class="line">...</span><br><span class="line">&apos;Z&apos; -&gt; 26</span><br></pre></td></tr></table></figure></p>
+<p>Given a non-empty string containing only digits, determine the total number of ways to decode it.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;226&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: It could be decoded as &quot;BZ&quot; (2 26), &quot;VF&quot; (22 6), or &quot;BBF&quot; (2 2 6).</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-6"><a href="#Solution-6" class="headerlink" title="Solution:"></a>Solution:</h4><blockquote>
+<p>dp[0] means an empty string will have one way to decode, dp[1] means the way to decode a string of size 1. Then check one digit and two digit combination and save the results along the way. In the end, dp[n] will be the end result.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public int numDecodings(String s) &#123;</span><br><span class="line">    int n = s.length();</span><br><span class="line">    if(n == 0) return 0;</span><br><span class="line">    </span><br><span class="line">    int[] m = new int[n+1];</span><br><span class="line">    m[n] = 1;</span><br><span class="line">    m[n-1] = s.charAt(n-1) != &apos;0&apos; ? 1 : 0;</span><br><span class="line">    </span><br><span class="line">    for(int i = n-2; i&gt;=0; i--)&#123;</span><br><span class="line">        if(s.charAt(i)==&apos;0&apos;) continue;</span><br><span class="line">        else m[i] = (Integer.parseInt(s.substring(i,i+2))&lt;=26) ? m[i+1] + m[i+2] : m[i+1];</span><br><span class="line">    &#125;</span><br><span class="line">    return m[0];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>From back to front:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public int numDecodings(String s) &#123;</span><br><span class="line">    int n = s.length();</span><br><span class="line">    if(n == 0) return 0;</span><br><span class="line">    </span><br><span class="line">    int[] m = new int[n+1];</span><br><span class="line">    m[n] = 1;</span><br><span class="line">    m[n-1] = s.charAt(n-1) != &apos;0&apos; ? 1 : 0;</span><br><span class="line">    </span><br><span class="line">    for(int i = n-2; i&gt;=0; i--)&#123;</span><br><span class="line">        if(s.charAt(i)==&apos;0&apos;) continue;</span><br><span class="line">        else m[i] = (Integer.parseInt(s.substring(i,i+2))&lt;=26) ? m[i+1] + m[i+2] : m[i+1];</span><br><span class="line">    &#125;</span><br><span class="line">    return m[0];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;</p>
+<h3 id="96-Unique-Binary-Search-Trees"><a href="#96-Unique-Binary-Search-Trees" class="headerlink" title="96. Unique Binary Search Trees"></a><em>96. Unique Binary Search Trees</em></h3><p>Given n, how many structurally unique BST’s (binary search trees) that store values 1 … n?</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: 3</span><br><span class="line">Output: 5</span><br><span class="line">Explanation:</span><br><span class="line">Given n = 3, there are a total of 5 unique BST&apos;s:</span><br><span class="line"></span><br><span class="line">   1         3     3      2      1</span><br><span class="line">    \       /     /      / \      \</span><br><span class="line">     3     2     1      1   3      2</span><br><span class="line">    /     /       \                 \</span><br><span class="line">   2     1         2                 3</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-7"><a href="#Solution-7" class="headerlink" title="Solution:"></a>Solution:</h4><blockquote>
+<p>G(n): the number of unique BST for a sequence of length n.<br>F(i, n), 1 &lt;= i &lt;= n: the number of unique BST, where the number i is the root of BST, and the sequence ranges from 1 to n.<br><em>G(n) = F(1, n) + F(2, n) + … + F(n, n)</em><br>The tricky part is that we could consider the number of unique BST out of sequence [1,2] as G(2), and the number of of unique BST out of sequence [4, 5, 6, 7] as G(4). Therefore, F(3,7) = G(2) <em> G(4).
+</em>F(i, n) = G(i-1) <em> G(n-i) &nbsp;&nbsp; 1 &lt;= i &lt;= n</em><br>Therefore:<br>G(n) = G(0) <em> G(n-1) + G(1) </em> G(n-2) + … + G(n-1) * G(0)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public int numTrees(int n) &#123;</span><br><span class="line">    int[]G = new int[n+1];</span><br><span class="line">    G[0]=1;</span><br><span class="line">    G[1]=1;</span><br><span class="line">    for(int i=2; i&lt;=n; i++)&#123;</span><br><span class="line">        for(int j = 1; j&lt;=i; j++)&#123;</span><br><span class="line">            G[i] += G[j-1]*G[i-j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return G[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>&nbsp;</p>
+<h3 id="95-Unique-Binary-Search-Trees-II"><a href="#95-Unique-Binary-Search-Trees-II" class="headerlink" title="95. Unique Binary Search Trees II"></a><em>95. Unique Binary Search Trees II</em></h3><p>Given an integer n, generate all structurally unique BST’s (binary search trees) that store values 1 … n.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Input: 3</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [1,null,3,2],</span><br><span class="line">  [3,2,null,1],</span><br><span class="line">  [3,1,null,null,2],</span><br><span class="line">  [2,1,3],</span><br><span class="line">  [1,null,2,null,3]</span><br><span class="line">]</span><br><span class="line">Explanation:</span><br><span class="line">The above output corresponds to the 5 unique BST&apos;s shown below:</span><br><span class="line"></span><br><span class="line">   1         3     3      2      1</span><br><span class="line">    \       /     /      / \      \</span><br><span class="line">     3     2     1      1   3      2</span><br><span class="line">    /     /       \                 \</span><br><span class="line">   2     1         2                 3</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-8"><a href="#Solution-8" class="headerlink" title="Solution:"></a>Solution:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;TreeNode&gt; generateTrees(int n) &#123;</span><br><span class="line">        if(n &lt; 1)</span><br><span class="line">            return new ArrayList&lt;TreeNode&gt;();</span><br><span class="line">        return helper(1, n);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public List&lt;TreeNode&gt; helper(int start, int end)&#123;</span><br><span class="line">        List &lt;TreeNode&gt;res = new ArrayList();</span><br><span class="line">        if(start&gt;end)&#123;</span><br><span class="line">            res.add(null);</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=start; i&lt;=end; i++)&#123;</span><br><span class="line">            List&lt;TreeNode&gt;leftChild = helper(start,i-1);</span><br><span class="line">            List&lt;TreeNode&gt;rightChild = helper(i+1,end);</span><br><span class="line">            for(TreeNode left: leftChild)&#123;</span><br><span class="line">                for(TreeNode right: rightChild)&#123;</span><br><span class="line">                    TreeNode root = new TreeNode(i);</span><br><span class="line">                    root.left = left;</span><br><span class="line">                    root.right = right;</span><br><span class="line">                    res.add(root);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="121-Best-Time-to-Buy-and-Sell-Stock"><a href="#121-Best-Time-to-Buy-and-Sell-Stock" class="headerlink" title="121. Best Time to Buy and Sell Stock"></a>121. Best Time to Buy and Sell Stock</h3><p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
+<p>If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
+<p>Note that you cannot sell a stock before you buy one.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [7,1,5,3,6,4]</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.</span><br><span class="line">             Not 7-1 = 6, as selling price needs to be larger than buying price.</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-9"><a href="#Solution-9" class="headerlink" title="Solution:"></a>Solution:</h4><p>Easy to Understand Solution:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public int maxProfit(int[] prices) &#123;</span><br><span class="line">    if(prices == null || prices.length &lt;2)</span><br><span class="line">        return 0;</span><br><span class="line">    int profit=0, minPriceSoFar=prices[0];</span><br><span class="line">    for(int i=1; i&lt;prices.length;i++)&#123;</span><br><span class="line">        profit=Math.max(prices[i]-minPriceSoFar, profit);</span><br><span class="line">        minPriceSoFar = Math.min(prices[i], minPriceSoFar);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return profit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Think it as accumulated maximum number:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public int maxProfit(int[] prices) &#123;</span><br><span class="line">    int curProfit = 0;</span><br><span class="line">    int gloProfit = 0;</span><br><span class="line">    for (int i = 1; i &lt; prices.length; i++)&#123;</span><br><span class="line">        curProfit = Math.max((prices[i]-prices[i-1]+curProfit),0);</span><br><span class="line">        gloProfit = Math.max(curProfit,gloProfit);</span><br><span class="line">    &#125;</span><br><span class="line">    return gloProfit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;</p>
+<h3 id="309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown"><a href="#309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown" class="headerlink" title="309. Best Time to Buy and Sell Stock with Cooldown"></a>309. Best Time to Buy and Sell Stock with Cooldown</h3><p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
+<p>Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times) with the following restrictions:<br><em>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</em><br><em>After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)</em></p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,0,2]</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: transactions = [buy, sell, cooldown, buy, sell]</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-10"><a href="#Solution-10" class="headerlink" title="Solution:"></a>Solution:</h4><p>buy[i] means before day i what is the maxProfit for any sequence end with buy.</p>
+<p>sell[i] means before day i what is the maxProfit for any sequence end with sell.</p>
+<p>rest[i] means before day i what is the maxProfit for any sequence end with rest.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">buy[i]  = max(rest[i-1]-price, buy[i-1]) </span><br><span class="line">sell[i] = max(buy[i-1]+price, sell[i-1])</span><br><span class="line">rest[i] = max(sell[i-1], buy[i-1], rest[i-1])</span><br></pre></td></tr></table></figure></p>
+<p>Well, the answer lies within the fact that buy[i] &lt;= rest[i] which means rest[i] = max(sell[i-1], rest[i-1]). That made sure [buy, rest, buy] is never occurred.</p>
+<p>A further observation is that and rest[i] &lt;= sell[i] is also true therefore</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rest[i] = sell[i-1]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public int maxProfit(int[] prices) &#123;</span><br><span class="line">    int sell = 0, prev_sell = 0, buy = Integer.MIN_VALUE, prev_buy;</span><br><span class="line">    for (int price : prices) &#123;</span><br><span class="line">        prev_buy = buy;</span><br><span class="line">        buy = Math.max(prev_sell - price, prev_buy);</span><br><span class="line">        prev_sell = sell;</span><br><span class="line">        sell = Math.max(prev_buy + price, prev_sell);</span><br><span class="line">    &#125;</span><br><span class="line">    return sell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="139-Word-Break"><a href="#139-Word-Break" class="headerlink" title="139. Word Break"></a>139. Word Break</h3><p>Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.<br><strong>Note:</strong><br>The same word in the dictionary may be reused multiple times in the segmentation.<br>You may assume the dictionary does not contain duplicate words.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;leetcode&quot;, wordDict = [&quot;leet&quot;, &quot;code&quot;]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: Return true because &quot;leetcode&quot; can be segmented as &quot;leet code&quot;.</span><br></pre></td></tr></table></figure>
+<h4 id="Solution-11"><a href="#Solution-11" class="headerlink" title="Solution:"></a>Solution:</h4><p>dp[i] stands for the string from s[0] to s[i] could be represented by words in dist.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public boolean wordBreak(String s, List&lt;String&gt; wordDict) &#123;</span><br><span class="line">    boolean []dp = new boolean[s.length()+1];</span><br><span class="line">    dp[0] = true;</span><br><span class="line">    Set&lt;String&gt; set = new HashSet&lt;&gt;(wordDict);</span><br><span class="line">    for(int i = 1; i &lt;= s.length(); i++)&#123;</span><br><span class="line">        for(int j = 0; j &lt; i; j++)&#123;</span><br><span class="line">            if(dp[j] &amp;&amp; set.contains(s.substring(j,i)))&#123;</span><br><span class="line">                dp[i] = true;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[s.length()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;</p>
+<h3 id="198-House-Robber"><a href="#198-House-Robber" class="headerlink" title="198. House Robber"></a>198. House Robber</h3><p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.</p>
+<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,7,9,3,1]</span><br><span class="line">Output: 12</span><br><span class="line">Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).</span><br><span class="line">             Total amount you can rob = 2 + 9 + 1 = 12.</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-12"><a href="#Solution-12" class="headerlink" title="Solution:"></a>Solution:</h4><p>For every house, we could make 2 decisions, rob or not.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public int rob(int[] nums) &#123;</span><br><span class="line">    int prevNo = 0; 	// No: means we don&apos;t rob the current house</span><br><span class="line">    int prevYes = 0; 	// Yes: means we rob the current house</span><br><span class="line">    for (int n : nums) &#123;</span><br><span class="line">        int temp = prevNo;</span><br><span class="line">        prevNo = Math.max(prevNo, prevYes);  // not rob current house, current max will depends on previous value: Math.max(prevNo, prevYes)</span><br><span class="line">        prevYes = n + temp;	// rob current one, add current stashed money value</span><br><span class="line">    &#125;</span><br><span class="line">    return Math.max(prevNo, prevYes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="213-House-Robber-II"><a href="#213-House-Robber-II" class="headerlink" title="213. House Robber II"></a>213. House Robber II</h3><p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are arranged in a circle. That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.</p>
+<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,1]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).</span><br><span class="line">             Total amount you can rob = 1 + 3 = 4.</span><br></pre></td></tr></table></figure>
+<h4 id="Solution-13"><a href="#Solution-13" class="headerlink" title="Solution:"></a>Solution:</h4><p>Result = max (robFirstHouse, notrob);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int rob(int[] nums) &#123;</span><br><span class="line">    if (nums.length == 1) return nums[0];</span><br><span class="line">    return Math.max(rob(nums, 0, nums.length-2), rob(nums, 1, nums.length-1));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private int rob(int[] nums, int lo, int hi) &#123;</span><br><span class="line">    int prevNo = 0;</span><br><span class="line">    int prevYes = 0;</span><br><span class="line">    for (int i = lo; i &lt;= hi; i++) &#123;</span><br><span class="line">        int temp = prevNo;</span><br><span class="line">        prevNo = Math.max(prevNo, prevYes);</span><br><span class="line">        prevYes = nums[i] + temp;</span><br><span class="line">    &#125;</span><br><span class="line">    return Math.max(prevNo, prevYes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;<br>&nbsp;</p>
+<h3 id="264-Ugly-Number-II"><a href="#264-Ugly-Number-II" class="headerlink" title="264. Ugly Number II"></a>264. Ugly Number II</h3><p>Write a program to find the n-th ugly number.<br>Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.<br><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 10</span><br><span class="line">Output: 12</span><br><span class="line">Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">#### Solution:</span><br><span class="line"></span><br><span class="line">because every number can only be divided by 2, 3, 5, one way to look at the sequence is to split the sequence to three groups as below:</span><br></pre></td></tr></table></figure>
+<p>(1) 1×2, 2×2, 3×2, 4×2, 5×2, …<br>(2) 1×3, 2×3, 3×3, 4×3, 5×3, …<br>(3) 1×5, 2×5, 3×5, 4×5, 5×5, …<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>public int nthUglyNumber(int n) {<br>    int index2 = 0, index3 = 0, index5 = 0;<br>    int factor2 = 2, factor3 = 3, factor5 = 5;<br>    int []ugly = new int[n];<br>    ugly[0] = 1;<br>    int min = 1;<br>    for ( int i = 1; i &lt; n; i++ ) {<br>        min = Math.min(Math.min(factor2, factor3), factor5);<br>        ugly[i] = min;<br>        if (min == factor2) factor2 = 2 <em> ugly[++index2];<br>        if (min == factor3) factor3 = 3 </em> ugly[++index3];<br>        if (min == factor5) factor5 = 5 * ugly[++index5];<br>    }<br>    return ugly[n-1];<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&amp;nbsp;</span><br><span class="line"></span><br><span class="line">### 279. Perfect Squares</span><br><span class="line"></span><br><span class="line">Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, ...) which sum to n.</span><br><span class="line"></span><br><span class="line">**Example:**</span><br></pre></td></tr></table></figure></p>
+<p>Input: n = 13<br>Output: 2<br>Explanation: 13 = 4 + 9.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### Solution:</span><br><span class="line"></span><br><span class="line">dp[n] indicates that the perfect squares count of the given n, and we have:</span><br></pre></td></tr></table></figure></p>
+<p>dp[0] = 0<br>dp[1] = dp[0]+1 = 1<br>dp[2] = dp[1]+1 = 2<br>dp[3] = dp[2]+1 = 3<br>dp[4] = Min{ dp[4-1<em>1]+1, dp[4-2</em>2]+1 }<br>      = Min{ dp[3]+1, dp[0]+1 }<br>      = 1<br>dp[5] = Min{ dp[5-1<em>1]+1, dp[5-2</em>2]+1 }<br>      = Min{ dp[4]+1, dp[1]+1 }<br>      = 2<br>                        .<br>                        .<br>                        .<br>dp[13] = Min{ dp[13-1<em>1]+1, dp[13-2</em>2]+1, dp[13-3<em>3]+1 }<br>       = Min{ dp[12]+1, dp[9]+1, dp[4]+1 }<br>       = 2<br>                        .<br>                        .<br>                        .1<br>dp[n] = Min{ dp[n - i</em>i] + 1 },  n - i*i &gt;=0 &amp;&amp; i &gt;= 1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&amp;nbsp;</span><br></pre></td></tr></table></figure></p>
+<p>public int numSquares(int n) {<br>    int[] dp = new int[n + 1];<br>    Arrays.fill(dp, Integer.MAX_VALUE);<br>    dp[0] = 0;<br>    for(int i = 1; i &lt;= n; ++i) {<br>        int min = Integer.MAX_VALUE;<br>        int j = 1;<br>        while(i - j<em>j &gt;= 0) {<br>            min = Math.min(min, dp[i - j</em>j] + 1);<br>            ++j;<br>        }<br>        dp[i] = min;<br>    }<br>    return dp[n];<br>}</p>
+<p>public int numSquares(int n) {<br>    int[] dp = new int[n+1];<br>    Arrays.fill(dp, Integer.MAX_VALUE);<br>    dp[0] = 0;<br>    for(int i = 1; i &lt;= n; i++){<br>        for(int j = 1; j<em>j &lt;= i; j++){<br>            dp[i] = Math.min(dp[i-j</em>j] + 1, dp[i]);<br>        }<br>    }<br>    return dp[n];<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&amp;nbsp;</span><br><span class="line"></span><br><span class="line">### 343. Integer Break</span><br><span class="line"></span><br><span class="line">Given a positive integer n, break it into the sum of at least two positive integers and maximize the product of those integers. Return the maximum product you can get.</span><br><span class="line"></span><br><span class="line">For example, given n = 2, return 1 (2 = 1 + 1); given n = 10, return 36 (10 = 3 + 3 + 4).</span><br><span class="line"></span><br><span class="line">Note: You may assume that n is not less than 2 and not larger than 58.</span><br><span class="line"></span><br><span class="line">#### Solution:</span><br><span class="line"></span><br><span class="line">dp[i] stores the max product from i. Suppose we *break the number i* to j (j &lt; i) and i - j, we want to compare dp[i] and j * (i - j) in each iteration. However, j or i - j maybe break into multiple smaller numbers to get greater product itself.</span><br></pre></td></tr></table></figure></p>
+<p>public int integerBreak(int n) {<br>    int[] dp = new int[n+1];<br>    dp[1] = 1;<br>    for (int i = 2; i &lt;= n; i++) {<br>        for (int j = 1; j &lt; i; j++) {<br>            dp[i] = Math.max( dp[i], Math.max(j, dp[j]) * Math.max(i-j, dp[i-j]) );<br>        }<br>    }<br>    return dp[n];<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math trick method:</span><br></pre></td></tr></table></figure></p>
+<p>public int integerBreak(int n) {<br>    if(n==2) return 1;<br>    if(n==3) return 2;<br>    int product = 1;<br>    while(n&gt;4){<br>        product<em>=3;<br>        n-=3;<br>    }<br>    product</em>=n;</p>
+<pre><code>return product;
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&amp;nbsp;</span><br><span class="line">### 376. Wiggle Subsequence</span><br><span class="line">A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with fewer than two elements is trivially a wiggle sequence.</span><br><span class="line"></span><br><span class="line">For example, [1,7,4,9,2,5] is a wiggle sequence because the differences (6,-3,5,-7,3) are alternately positive and negative. In contrast, [1,4,7,2,5] and [1,7,4,5,5] are not wiggle sequences, the first because its first two differences are positive and the second because its last difference is zero.</span><br><span class="line"></span><br><span class="line">Given a sequence of integers, return the length of the longest subsequence that is a wiggle sequence. A subsequence is obtained by deleting some number of elements (eventually, also zero) from the original sequence, leaving the remaining elements in their original order.</span><br><span class="line"></span><br><span class="line">**Example:**</span><br></pre></td></tr></table></figure></p>
+<p>Input: [1,7,4,9,2,5]<br>Output: 6<br>The entire sequence is a wiggle sequence.</p>
+<p>Input: [1,17,5,10,13,15,10,5,16,8]<br>Output: 7<br>There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].</p>
+<p>Input: [1,2,3,4,5,6,7,8,9]<br>Output: 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### Solution:</span><br><span class="line">For every position in the array, there are only three possible statuses for it.</span><br><span class="line"></span><br><span class="line">* up position, it means nums[i] &gt; nums[i-1]</span><br><span class="line">* down position, it means nums[i] &lt; nums[i-1]</span><br><span class="line">* equals to position, nums[i] == nums[i-1]</span><br><span class="line"></span><br><span class="line">So we can use two arrays up[] and down[] to record the max wiggle sequence length so far at index i.</span><br><span class="line">If nums[i] &gt; nums[i-1], that means it wiggles up. the element before it must be a down position. so up[i] = down[i-1] + 1; down[i] keeps the same with before.</span><br><span class="line">If nums[i] &lt; nums[i-1], that means it wiggles down. the element before it must be a up position. so down[i] = up[i-1] + 1; up[i] keeps the same with before.</span><br><span class="line">If nums[i] == nums[i-1], that means it will not change anything becasue it didn&apos;t wiggle at all. so both down[i] and up[i] keep the same.</span><br></pre></td></tr></table></figure></p>
+<p>public int wiggleMaxLength(int[] nums) {<br>    if (nums.length == 0) return 0;<br>    int []down = new int[nums.length];<br>    int []up = new int[nums.length];<br>    down[0] = 1;<br>    up[0] = 1;<br>    for (int i = 1; i &lt; nums.length; i++) {<br>        if (nums[i] &gt; nums[i-1]) {<br>            up[i] = down[i-1] + 1;<br>            down[i] = down[i-1];<br>        } else if (nums[i] &lt; nums[i-1]) {<br>            down[i] = up[i-1] + 1;<br>            up[i] = up[i-1];<br>        } else {<br>            down[i] = down[i-1];<br>            up[i] = up[i-1];<br>        }<br>    }<br>    return Math.max(up[nums.length-1], down[nums.length-1]);<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&amp;nbsp;</span><br><span class="line">&amp;nbsp;</span><br><span class="line">&gt; ### Bottom-Up</span><br><span class="line"></span><br><span class="line">### 120. Triangle</span><br><span class="line"></span><br><span class="line">Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.</span><br><span class="line"></span><br><span class="line">For example, given the following triangle</span><br></pre></td></tr></table></figure></p>
+<p>[<br>     [2],<br>    [3,4],<br>   [6,5,7],<br>  [4,1,8,3]<br>]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).</span><br><span class="line"></span><br><span class="line">#### Solution:</span><br><span class="line">&apos;Bottom-up&apos; DP is very straightforward: we start from the nodes on the bottom row; the min pathsums for these nodes are the values of the nodes themselves. From there, the min pathsum at the ith node on the kth row would be the lesser of the pathsums of its two children plus the value of itself, i.e.:</span><br></pre></td></tr></table></figure></p>
+<p>dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">public int minimumTotal(List&lt;List&lt;Integer&gt;&gt; triangle) &#123;</span><br><span class="line">    int[] dp = new int[triangle.size() + 1];</span><br><span class="line">    for (int i = triangle.size() - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">        for (int j = 0; j &lt; triangle.get(i).size(); j++) &#123;</span><br><span class="line">            dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[0];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;</p>
+<h3 id="322-Coin-Change"><a href="#322-Coin-Change" class="headerlink" title="322. Coin Change"></a><em>322. Coin Change</em></h3><p>You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: coins = [1, 2, 5], amount = 11</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: 11 = 5 + 5 + 1</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-14"><a href="#Solution-14" class="headerlink" title="Solution:"></a>Solution:</h4><p>Top-down:</p>
+<p>The idea is very classic dynamic programming: think of the last step we take. Suppose we have already found out the best way to sum up to amount a, then for the last step, we can choose any coin type which gives us a remainder r where <em>r = a-coins[i]</em> for all i’s. For every remainder, go through exactly the same process as before until either the remainder is 0 or less than 0 (meaning not a valid solution). With this idea, the only remaining detail is to store the minimum number of coins needed to sum up to r so that we don’t need to recompute it over and over again.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public int coinChange(int[] coins, int amount) &#123;</span><br><span class="line">    if(amount&lt;1) return 0;</span><br><span class="line">    return helper(coins, amount, new int[amount]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private int helper(int[] coins, int rem, int[] count) &#123; // rem: remaining coins after the last step; count[rem]: minimum number of coins to sum up to rem</span><br><span class="line">    if(rem&lt;0) return -1; // not valid</span><br><span class="line">    if(rem==0) return 0; // completed</span><br><span class="line">    if(count[rem-1] != 0) return count[rem-1]; // already computed, so reuse</span><br><span class="line">    int min = Integer.MAX_VALUE;</span><br><span class="line">    for(int coin : coins) &#123;</span><br><span class="line">        int res = helper(coins, rem-coin, count);</span><br><span class="line">        if(res&gt;=0 &amp;&amp; res &lt; min)</span><br><span class="line">            min = 1+res;</span><br><span class="line">    &#125;</span><br><span class="line">    count[rem-1] = (min==Integer.MAX_VALUE) ? -1 : min;</span><br><span class="line">    return count[rem-1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Bottom-up:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public int coinChange(int[] coins, int amount) &#123;</span><br><span class="line">    int max = amount + 1;             </span><br><span class="line">    int[] dp = new int[amount + 1];  </span><br><span class="line">    Arrays.fill(dp, max);  </span><br><span class="line">    dp[0] = 0;   </span><br><span class="line">    for (int i = 1; i &lt;= amount; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; coins.length; j++) &#123;</span><br><span class="line">            if (coins[j] &lt;= i) &#123;</span><br><span class="line">                dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[amount] &gt; amount ? -1 : dp[amount];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;</p>
+<h3 id="338-Counting-Bits"><a href="#338-Counting-Bits" class="headerlink" title="338. Counting Bits"></a><em>338. Counting Bits</em></h3><p>Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1’s in their binary representation and return them as an array.</p>
+<p><strong>Example:</strong><br>For num = 5 you should return [0,1,1,2,1,2].</p>
+<h4 id="Solution-15"><a href="#Solution-15" class="headerlink" title="Solution:"></a>Solution:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public int[] countBits(int num) &#123;</span><br><span class="line"></span><br><span class="line">    int[] bits = new int[num + 1];    </span><br><span class="line">    for(int i = 1; i &lt;= num; i++)&#123;</span><br><span class="line">        bits[i] = bits[i/2];</span><br><span class="line">        if(i%2 == 1) bits[i]++; </span><br><span class="line">    &#125;</span><br><span class="line">    return bits;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>With this idea, we can also resolve this problem using <a href="https://wzvincent.github.io/2018/06/11/bit-manipulation/" target="_blank" rel="noopener">bit manipulation</a>.<br>&nbsp;<br>&nbsp;<br>&nbsp;</p>
+<blockquote>
+<h1 id="Two-Dimension-DP"><a href="#Two-Dimension-DP" class="headerlink" title="Two Dimension DP"></a><font color="red">Two Dimension DP</font></h1></blockquote>
+<h3 id="62-Unique-Path"><a href="#62-Unique-Path" class="headerlink" title="62. Unique Path"></a><em>62. Unique Path</em></h3><p>A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).</p>
+<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked ‘Finish’ in the diagram below).</p>
+<p>How many possible unique paths are there?</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: m = 3, n = 2</span><br><span class="line">Output: 3</span><br><span class="line">Explanation:</span><br><span class="line">From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:</span><br><span class="line">1. Right -&gt; Right -&gt; Down</span><br><span class="line">2. Right -&gt; Down -&gt; Right</span><br><span class="line">3. Down -&gt; Right -&gt; Right</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-16"><a href="#Solution-16" class="headerlink" title="Solution:"></a>Solution:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public int uniquePaths(int m, int n) &#123;</span><br><span class="line">    int[][]path = new int[m][n];</span><br><span class="line">    for(int i = 0; i&lt;m; i++)&#123;</span><br><span class="line">        for(int j = 0; j&lt;n; j++)&#123;</span><br><span class="line">            if(i==0||j==0)</span><br><span class="line">                path[i][j]=1;</span><br><span class="line">            else</span><br><span class="line">                path[i][j] = path[i-1][j] + path[i][j-1];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return path[m-1][n-1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="63-Unique-Path-II"><a href="#63-Unique-Path-II" class="headerlink" title="63. Unique Path II"></a><em>63. Unique Path II</em></h3><p>A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).</p>
+<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked ‘Finish’ in the diagram below).</p>
+<p>Now consider if some obstacles are added to the grids. How many unique paths would there be?</p>
+<p>An obstacle and empty space is marked as 1 and 0 respectively in the grid.</p>
+<p>Note: m and n will be at most 100.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[</span><br><span class="line">  [0,0,0],</span><br><span class="line">  [0,1,0],</span><br><span class="line">  [0,0,0]</span><br><span class="line">]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation:</span><br><span class="line">There is one obstacle in the middle of the 3x3 grid above.</span><br><span class="line">There are two ways to reach the bottom-right corner:</span><br><span class="line">1. Right -&gt; Right -&gt; Down -&gt; Down</span><br><span class="line">2. Down -&gt; Down -&gt; Right -&gt; Right</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-17"><a href="#Solution-17" class="headerlink" title="Solution:"></a>Solution:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public int uniquePathsWithObstacles(int[][] obstacleGrid) &#123;</span><br><span class="line">    int x = obstacleGrid.length;</span><br><span class="line">    int y = obstacleGrid[0].length;</span><br><span class="line">    for (int i = 0; i &lt; x; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; y; j++) &#123;</span><br><span class="line">            if(obstacleGrid[i][j] == 1)</span><br><span class="line">                obstacleGrid[i][j] = 0;</span><br><span class="line">            else if(i == 0 &amp;&amp; j == 0)</span><br><span class="line">                obstacleGrid[i][j] = 1;</span><br><span class="line">            else if(i == 0)</span><br><span class="line">                obstacleGrid[i][j] = obstacleGrid[i][j - 1];</span><br><span class="line">            else if(j == 0)</span><br><span class="line">                obstacleGrid[i][j] = obstacleGrid[i - 1][j];</span><br><span class="line">            else</span><br><span class="line">                obstacleGrid[i][j] = obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return obstacleGrid[x-1][y-1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;<br>&nbsp;</p>
+<h3 id="64-Minimum-Path-Sum"><a href="#64-Minimum-Path-Sum" class="headerlink" title="64. Minimum Path Sum"></a><em>64. Minimum Path Sum</em></h3><p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.</p>
+<p>Note: You can only move either down or right at any point in time.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[</span><br><span class="line">  [1,3,1],</span><br><span class="line">  [1,5,1],</span><br><span class="line">  [4,2,1]</span><br><span class="line">]</span><br><span class="line">Output: 7</span><br><span class="line">Explanation: Because the path 1→3→1→1→1 minimizes the sum.</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-18"><a href="#Solution-18" class="headerlink" title="Solution:"></a>Solution:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public int minPathSum(int[][] grid) &#123;</span><br><span class="line">    int m = grid.length;</span><br><span class="line">    int n = grid[0].length; </span><br><span class="line">    for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">            if (i == 0 &amp;&amp; j != 0) &#123;</span><br><span class="line">                grid[i][j] = grid[i][j] + grid[i][j - 1];</span><br><span class="line">            &#125; else if (i != 0 &amp;&amp; j == 0) &#123;</span><br><span class="line">                grid[i][j] = grid[i][j] + grid[i - 1][j];</span><br><span class="line">            &#125; else if (i == 0 &amp;&amp; j == 0) &#123;</span><br><span class="line">                grid[i][j] = grid[i][j];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                grid[i][j] = Math.min(grid[i][j - 1], grid[i - 1][j])</span><br><span class="line">                        + grid[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return grid[m - 1][n - 1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="221-Maximal-Square"><a href="#221-Maximal-Square" class="headerlink" title="221. Maximal Square"></a><em>221. Maximal Square</em></h3><p>Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line"></span><br><span class="line">1 0 1 0 0</span><br><span class="line">1 0 1 1 1</span><br><span class="line">1 1 1 1 1</span><br><span class="line">1 0 0 1 0</span><br><span class="line"></span><br><span class="line">Output: 4</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-19"><a href="#Solution-19" class="headerlink" title="Solution:"></a>Solution:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public int maximalSquare(char[][] matrix) &#123;</span><br><span class="line">    int rows = matrix.length, cols = rows &gt; 0 ? matrix[0].length : 0;</span><br><span class="line">    int [][]dp = new int [rows + 1][cols + 1];</span><br><span class="line">    int max = 0;</span><br><span class="line">    for (int i = 1; i &lt;= rows; i++) &#123;</span><br><span class="line">        for (int j = 1; j &lt;= cols; j++) &#123;</span><br><span class="line">            if (matrix[i-1][j-1] == &apos;1&apos;) &#123;</span><br><span class="line">                dp[i][j] = Math.min( Math.min( dp[i-1][j-1], dp[i-1][j] ), dp[i][j-1] ) + 1;</span><br><span class="line">                max = Math.max(dp[i][j], max);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return max * max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="375-Guess-Number-Higher-or-Lower-II"><a href="#375-Guess-Number-Higher-or-Lower-II" class="headerlink" title="375. Guess Number Higher or Lower II"></a><em>375. Guess Number Higher or Lower II</em></h3><p>We are playing the Guess Game. The game is as follows:</p>
+<p>I pick a number from 1 to n. You have to guess which number I picked.</p>
+<p>Every time you guess wrong, I’ll tell you whether the number I picked is higher or lower.</p>
+<p>However, when you guess a particular number x, and you guess wrong, you pay $x. You win the game when you guess the number I picked.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">n = 10, I pick 8.</span><br><span class="line"></span><br><span class="line">First round:  You guess 5, I tell you that it&apos;s higher. You pay $5.</span><br><span class="line">Second round: You guess 7, I tell you that it&apos;s higher. You pay $7.</span><br><span class="line">Third round:  You guess 9, I tell you that it&apos;s lower. You pay $9.</span><br><span class="line"></span><br><span class="line">Game over. 8 is the number I picked.</span><br><span class="line"></span><br><span class="line">You end up paying $5 + $7 + $9 = $21.</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-20"><a href="#Solution-20" class="headerlink" title="Solution:"></a>Solution:</h4><p>Definition of dp[i][j]: minimum number of money to guarantee win for subproblem [i, j].</p>
+<p>Target: dp[1][n]</p>
+<p>Corner case: dp[i][i] = 0 (because the only element must be correct)</p>
+<p>Equation: we can choose k (i&lt;=k&lt;=j) as our guess, and pay price k. After our guess, the problem is divided into two subproblems. Notice we do not need to pay the money for both subproblems. We only need to pay the worst case (because the system will tell us which side we should go) to guarantee win. So dp[i][j] = min (i&lt;=k&lt;=j) { k + max(dp[i][k-1], dp[k+1][j]) }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public int getMoneyAmount(int n) &#123;</span><br><span class="line">    int[][] dp = new int[n+1][n+1];</span><br><span class="line">    for (int j = 2; j &lt;= n; j++) &#123;</span><br><span class="line">        for (int i = j - 1; i &gt; 0; i--) &#123;</span><br><span class="line">            int globalMin = Integer.MAX_VALUE;</span><br><span class="line">            for (int k = i + 1; k &lt; j; k++) &#123;</span><br><span class="line">                int localMax = k + Math.max(dp[i][k-1], dp[k+1][j]);</span><br><span class="line">                globalMin = Math.min(globalMin, localMax);</span><br><span class="line">            &#125;</span><br><span class="line">            dp[i][j] = i + 1 == j ? i : globalMin;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[1][n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;</p>
+<blockquote>
+<h1 id="Recursion-with-DP"><a href="#Recursion-with-DP" class="headerlink" title="Recursion with DP"></a><font color="red">Recursion with DP</font></h1></blockquote>
+<h3 id="377-Combination-Sum-IV"><a href="#377-Combination-Sum-IV" class="headerlink" title="377. Combination Sum IV"></a><em>377. Combination Sum IV</em></h3><p>Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">nums = [1, 2, 3]</span><br><span class="line">target = 4</span><br><span class="line"></span><br><span class="line">The possible combination ways are:</span><br><span class="line">(1, 1, 1, 1)</span><br><span class="line">(1, 1, 2)</span><br><span class="line">(1, 2, 1)</span><br><span class="line">(1, 3)</span><br><span class="line">(2, 1, 1)</span><br><span class="line">(2, 2)</span><br><span class="line">(3, 1)</span><br><span class="line"></span><br><span class="line">Note that different sequences are counted as different combinations.</span><br><span class="line"></span><br><span class="line">Therefore the output is 7.</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-21"><a href="#Solution-21" class="headerlink" title="Solution:"></a>Solution:</h4><p>Let dp[i] be the number of possible combinations that add up to i.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">private int[] dp;</span><br><span class="line"></span><br><span class="line">public int combinationSum4(int[] nums, int target) &#123;</span><br><span class="line">    dp = new int[target + 1];</span><br><span class="line">    Arrays.fill(dp, -1);</span><br><span class="line">    dp[0] = 1;</span><br><span class="line">    return helper(nums, target);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private int helper(int[] nums, int target) &#123;</span><br><span class="line">    if (dp[target] != -1) return dp[target];</span><br><span class="line">    int res = 0;</span><br><span class="line">    for (int i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">        if (target &gt;= nums[i]) &#123;</span><br><span class="line">            res += helper(nums, target - nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dp[target] = res;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Bottom-up method:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public int combinationSum4(int[] nums, int target) &#123;</span><br><span class="line">    int[] dp = new int[target + 1];</span><br><span class="line">    dp[0] = 1;</span><br><span class="line">    for (int i = 1; i &lt; target + 1; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; nums.length; j++) &#123;</span><br><span class="line">            if ( i &gt;= nums[j] ) &#123;</span><br><span class="line">                dp[i] += dp[i - nums[j]];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[target];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;<br>&nbsp;<br><em>To be continued…</em></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/dynamic-programming/" rel="tag"># dynamic programming</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/11/bit-manipulation/" rel="next" title="Bit Manipulation">
+                <i class="fa fa-chevron-left"></i> Bit Manipulation
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/20/tianjin2018/" rel="prev" title="游记-天津">
+                游记-天津 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="Zhan Wang" />
+            
+              <p class="site-author-name" itemprop="name">Zhan Wang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/wzvincent" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="wwzzvin626@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Longest-XXX-Substring-Subarray-Subsequence"><span class="nav-number">1.</span> <span class="nav-text">Longest XXX Substring / Subarray / Subsequence</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Longest-Palindromic-Substring"><span class="nav-number">1.0.1.</span> <span class="nav-text">5. Longest Palindromic Substring</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#53-Maximum-Subarray"><span class="nav-number">1.0.2.</span> <span class="nav-text">53. Maximum Subarray</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-1"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#152-Maximum-Product-Subarray"><span class="nav-number">1.0.3.</span> <span class="nav-text">152. Maximum Product Subarray</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-2"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#300-Longest-Increasing-Subsequence"><span class="nav-number">1.0.4.</span> <span class="nav-text">300. Longest Increasing Subsequence</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-3"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#368-Largest-Divisible-Subset"><span class="nav-number">1.0.5.</span> <span class="nav-text">368. Largest Divisible Subset</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-4"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#One-Dimension-DP"><span class="nav-number">2.</span> <span class="nav-text">One Dimension DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#70-Climbing-Stairs"><span class="nav-number">2.0.1.</span> <span class="nav-text">70. Climbing Stairs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-5"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#91-Decode-Ways"><span class="nav-number">2.0.2.</span> <span class="nav-text">91. Decode Ways</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-6"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#96-Unique-Binary-Search-Trees"><span class="nav-number">2.0.3.</span> <span class="nav-text">96. Unique Binary Search Trees</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-7"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#95-Unique-Binary-Search-Trees-II"><span class="nav-number">2.0.4.</span> <span class="nav-text">95. Unique Binary Search Trees II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-8"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#121-Best-Time-to-Buy-and-Sell-Stock"><span class="nav-number">2.0.5.</span> <span class="nav-text">121. Best Time to Buy and Sell Stock</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-9"><span class="nav-number">2.0.5.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown"><span class="nav-number">2.0.6.</span> <span class="nav-text">309. Best Time to Buy and Sell Stock with Cooldown</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-10"><span class="nav-number">2.0.6.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#139-Word-Break"><span class="nav-number">2.0.7.</span> <span class="nav-text">139. Word Break</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-11"><span class="nav-number">2.0.7.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#198-House-Robber"><span class="nav-number">2.0.8.</span> <span class="nav-text">198. House Robber</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-12"><span class="nav-number">2.0.8.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#213-House-Robber-II"><span class="nav-number">2.0.9.</span> <span class="nav-text">213. House Robber II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-13"><span class="nav-number">2.0.9.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#264-Ugly-Number-II"><span class="nav-number">2.0.10.</span> <span class="nav-text">264. Ugly Number II</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#322-Coin-Change"><span class="nav-number">2.0.11.</span> <span class="nav-text">322. Coin Change</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-14"><span class="nav-number">2.0.11.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#338-Counting-Bits"><span class="nav-number">2.0.12.</span> <span class="nav-text">338. Counting Bits</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-15"><span class="nav-number">2.0.12.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Two-Dimension-DP"><span class="nav-number">3.</span> <span class="nav-text">Two Dimension DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#62-Unique-Path"><span class="nav-number">3.0.1.</span> <span class="nav-text">62. Unique Path</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-16"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#63-Unique-Path-II"><span class="nav-number">3.0.2.</span> <span class="nav-text">63. Unique Path II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-17"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#64-Minimum-Path-Sum"><span class="nav-number">3.0.3.</span> <span class="nav-text">64. Minimum Path Sum</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-18"><span class="nav-number">3.0.3.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#221-Maximal-Square"><span class="nav-number">3.0.4.</span> <span class="nav-text">221. Maximal Square</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-19"><span class="nav-number">3.0.4.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#375-Guess-Number-Higher-or-Lower-II"><span class="nav-number">3.0.5.</span> <span class="nav-text">375. Guess Number Higher or Lower II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-20"><span class="nav-number">3.0.5.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Recursion-with-DP"><span class="nav-number">4.</span> <span class="nav-text">Recursion with DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#377-Combination-Sum-IV"><span class="nav-number">4.0.1.</span> <span class="nav-text">377. Combination Sum IV</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-21"><span class="nav-number">4.0.1.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Zhan Wang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhan Wang</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
