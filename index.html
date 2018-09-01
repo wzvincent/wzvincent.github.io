@@ -277,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/24/binary-search/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/28/binary-tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhan Wang">
@@ -296,8 +296,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/24/binary-search/" itemprop="url">
-                  binary-search
+                <a class="post-title-link" href="/2018/08/28/binary-tree/" itemprop="url">
+                  binary-tree
                 </a>
               
             
@@ -323,7 +323,7 @@
                 
               
 
-              <time title="Created: 2018-08-24 17:05:43 / Modified: 17:11:36" itemprop="dateCreated datePublished" datetime="2018-08-24T17:05:43-05:00">2018-08-24</time>
+              <time title="Created: 2018-08-28 15:17:44 / Modified: 16:15:35" itemprop="dateCreated datePublished" datetime="2018-08-28T15:17:44-05:00">2018-08-28</time>
             
 
             
@@ -380,13 +380,184 @@
 
       
         
+          
+            <blockquote>
+<h1 id="Pre-order-Traversal"><a href="#Pre-order-Traversal" class="headerlink" title=" Pre-order Traversal"></a><font color="red"> Pre-order Traversal</font></h1></blockquote>
+<h3 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">  public ArrayList&lt;Integer&gt; preorderTraversal(TreeNode root) &#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();</span><br><span class="line">    traverse(root, result);</span><br><span class="line">    return result;</span><br><span class="line">  &#125;</span><br><span class="line">  private void traverse(TreeNode root, ArrayList&lt;Integer&gt; result) &#123;</span><br><span class="line">    if(root == null) &#123;</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    resut.add(root.val);</span><br><span class="line">    traverse(root.left, result);</span><br><span class="line">    traverse(root.right, result);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Non-recursion-use-stack"><a href="#Non-recursion-use-stack" class="headerlink" title="Non-recursion (use stack)"></a>Non-recursion (use stack)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">  public ArrayList&lt;Integer&gt; preorderTraversal(TreeNode root) &#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = new Stack&lt;Treenode&gt;();</span><br><span class="line">    List&lt;Integer&gt; preorder = new ArrayList&lt;Integer&gt;();</span><br><span class="line"></span><br><span class="line">    if (root == null) &#123;</span><br><span class="line">      return preorder;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    stack.push(root);</span><br><span class="line">    while (!stack.empty()) &#123;</span><br><span class="line">      TreeNode node = stack.pop();</span><br><span class="line">      preorder.add(node.val);</span><br><span class="line">      if(node.right != null) &#123;</span><br><span class="line">        stack.push(node.right);</span><br><span class="line">      &#125;</span><br><span class="line">      if(node.left != null) &#123;</span><br><span class="line">        stack.push(node.left);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return preorder;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Divide-and-Conquer"><a href="#Divide-and-Conquer" class="headerlink" title="Divide and Conquer"></a>Divide and Conquer</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">  public ArrayList&lt;Integer&gt; preorderTraversal(TreeNode root) &#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();</span><br><span class="line">    if (root == null) &#123;</span><br><span class="line">      return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Divide</span><br><span class="line">    ArrayList&lt;Integer&gt; left = preorderTraversal(root.left);</span><br><span class="line">    ArrayList&lt;Integer&gt; right = preorderTraversal(root.right);</span><br><span class="line"></span><br><span class="line">    result.add(root.val);</span><br><span class="line">    result.addAll(left);</span><br><span class="line">    result.addAll(right);</span><br><span class="line">    return result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/24/binary-search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhan Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wzvincent">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/24/binary-search/" itemprop="url">
+                  Binary Search
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-24 17:05:43" itemprop="dateCreated datePublished" datetime="2018-08-24T17:05:43-05:00">2018-08-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-27 22:29:55" itemprop="dateModified" datetime="2018-08-27T22:29:55-05:00">2018-08-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
           <blockquote>
 <h1 id="Fundemental-Solutions"><a href="#Fundemental-Solutions" class="headerlink" title=" Fundemental Solutions"></a><font color="red"> Fundemental Solutions</font></h1></blockquote>
 <h4 id="While-Condition"><a href="#While-Condition" class="headerlink" title="While Condition:"></a>While Condition:</h4><p>start + 1 &lt; end</p>
 <h4 id="Middle-Item"><a href="#Middle-Item" class="headerlink" title="Middle Item:"></a>Middle Item:</h4><p>mid = (end - start) / 2 + start </p>
-<h4 id="Next-Process"><a href="#Next-Process" class="headerlink" title="Next Process:"></a>Next Process:</h4><p>start = mid<br>end = mid<br>&nbsp;<br>&nbsp;</p>
-<blockquote>
-<h1 id="Problems"><a href="#Problems" class="headerlink" title=" Problems "></a><font color="red"> Problems </font></h1></blockquote>
+<h4 id="Next-Process"><a href="#Next-Process" class="headerlink" title="Next Process:"></a>Next Process:</h4><p>start = mid<br>end = mid<br></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/24/binary-search/#more" rel="contents">
@@ -508,7 +679,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-08-24 17:05:12" itemprop="dateModified" datetime="2018-08-24T17:05:12-05:00">2018-08-24</time>
+                <time title="Modified: 2018-08-31 15:57:49" itemprop="dateModified" datetime="2018-08-31T15:57:49-05:00">2018-08-31</time>
               
             
           </span>
@@ -560,7 +731,15 @@
 
       
         
-          <h3 id="101-Symmetric-Tree"><a href="#101-Symmetric-Tree" class="headerlink" title="101. Symmetric Tree"></a><em>101. Symmetric Tree</em></h3><p>Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).</p>
+          <blockquote>
+<h1 id="Application"><a href="#Application" class="headerlink" title="Application"></a><font color="red">Application</font></h1><ul>
+<li>Level Order Traversal</li>
+<li>Connected Component</li>
+<li>Topological Sorting</li>
+<li>Shortest Path in Simple Graph</li>
+</ul>
+</blockquote>
+<h3 id="101-Symmetric-Tree"><a href="#101-Symmetric-Tree" class="headerlink" title="101. Symmetric Tree"></a><em>101. Symmetric Tree</em></h3><p>Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).</p>
 <p>For example, this binary tree [1,2,2,3,4,4,3] is symmetric:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   2</span><br><span class="line"> / \ / \</span><br><span class="line">3  4 4  3</span><br></pre></td></tr></table></figure></p>
 <p>But the following [1,2,2,null,3,null,3] is not:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  1</span><br><span class="line"> / \</span><br><span class="line">2   2</span><br><span class="line"> \   \</span><br><span class="line"> 3    3</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
@@ -822,7 +1001,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2018/07/16/divided-conquer/" itemprop="url">
-                  divided-conquer
+                  Divided & Conquer
                 </a>
               
             
@@ -865,7 +1044,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-30 10:20:46" itemprop="dateModified" datetime="2018-07-30T10:20:46-05:00">2018-07-30</time>
+                <time title="Modified: 2018-08-24 17:14:12" itemprop="dateModified" datetime="2018-08-24T17:14:12-05:00">2018-08-24</time>
               
             
           </span>
@@ -1841,182 +2020,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/08/jsObject/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhan Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wzvincent">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/08/jsObject/" itemprop="url">
-                  JavaScript Object Creation
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-06-08 11:24:52" itemprop="dateCreated datePublished" datetime="2018-06-08T11:24:52-05:00">2018-06-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-06-27 17:19:02" itemprop="dateModified" datetime="2018-06-27T17:19:02-05:00">2018-06-27</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/front-end/" itemprop="url" rel="index"><span itemprop="name">front end</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Understanding-Objects"><a href="#Understanding-Objects" class="headerlink" title="Understanding Objects"></a>Understanding Objects</h2><blockquote>
-<h3 id="Type-of-Properties"><a href="#Type-of-Properties" class="headerlink" title="Type of Properties"></a>Type of Properties</h3></blockquote>
-<h4 id="Data-Properties"><a href="#Data-Properties" class="headerlink" title="Data Properties"></a>Data Properties</h4><p>Data properties <code>contain a single location for a data value</code>. Data properties have four attributes describing their behavior:<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/08/jsObject/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2068,7 +2071,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="101. Symmetric TreeGiven a binary tree, check whether it is a mirror of itself (ie, symmetric around its center). For example, this binary tree [1,2,2,3,4,4,3] is symmetric:12345    1   / \  2   2 / \">
+  <meta name="description" content="Application Level Order Traversal Connected Component Topological Sorting Shortest Path in Simple Graph   101. Symmetric TreeGiven a binary tree, check whether it is a mirror of itself (ie, symmetric">
 <meta name="keywords" content="leetcode,BFS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BFS">
 <meta property="og:url" content="http://yoursite.com/2018/08/07/bfs/index.html">
 <meta property="og:site_name" content="wzvincent">
-<meta property="og:description" content="101. Symmetric TreeGiven a binary tree, check whether it is a mirror of itself (ie, symmetric around its center). For example, this binary tree [1,2,2,3,4,4,3] is symmetric:12345    1   / \  2   2 / \">
+<meta property="og:description" content="Application Level Order Traversal Connected Component Topological Sorting Shortest Path in Simple Graph   101. Symmetric TreeGiven a binary tree, check whether it is a mirror of itself (ie, symmetric">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-24T22:05:12.301Z">
+<meta property="og:updated_time" content="2018-08-31T20:57:49.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BFS">
-<meta name="twitter:description" content="101. Symmetric TreeGiven a binary tree, check whether it is a mirror of itself (ie, symmetric around its center). For example, this binary tree [1,2,2,3,4,4,3] is symmetric:12345    1   / \  2   2 / \">
+<meta name="twitter:description" content="Application Level Order Traversal Connected Component Topological Sorting Shortest Path in Simple Graph   101. Symmetric TreeGiven a binary tree, check whether it is a mirror of itself (ie, symmetric">
 
 
 
@@ -340,7 +340,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-08-24 17:05:12" itemprop="dateModified" datetime="2018-08-24T17:05:12-05:00">2018-08-24</time>
+                <time title="Modified: 2018-08-31 15:57:49" itemprop="dateModified" datetime="2018-08-31T15:57:49-05:00">2018-08-31</time>
               
             
           </span>
@@ -391,7 +391,15 @@
       
 
       
-        <h3 id="101-Symmetric-Tree"><a href="#101-Symmetric-Tree" class="headerlink" title="101. Symmetric Tree"></a><em>101. Symmetric Tree</em></h3><p>Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).</p>
+        <blockquote>
+<h1 id="Application"><a href="#Application" class="headerlink" title="Application"></a><font color="red">Application</font></h1><ul>
+<li>Level Order Traversal</li>
+<li>Connected Component</li>
+<li>Topological Sorting</li>
+<li>Shortest Path in Simple Graph</li>
+</ul>
+</blockquote>
+<h3 id="101-Symmetric-Tree"><a href="#101-Symmetric-Tree" class="headerlink" title="101. Symmetric Tree"></a><em>101. Symmetric Tree</em></h3><p>Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).</p>
 <p>For example, this binary tree [1,2,2,3,4,4,3] is symmetric:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   2</span><br><span class="line"> / \ / \</span><br><span class="line">3  4 4  3</span><br></pre></td></tr></table></figure></p>
 <p>But the following [1,2,2,null,3,null,3] is not:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  1</span><br><span class="line"> / \</span><br><span class="line">2   2</span><br><span class="line"> \   \</span><br><span class="line"> 3    3</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
@@ -401,6 +409,13 @@
 <p><strong>Example:</strong><br>Given binary tree [3,9,20,null,null,15,7],<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> / \</span><br><span class="line">9  20</span><br><span class="line">  /  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure></p>
 <p>return its level order traversal as:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [9,20],</span><br><span class="line">  [15,7]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <h4 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution:"></a>Solution:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">    Queue&lt;TreeNode&gt; queue = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; wrapList = new LinkedList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">    if (root == null) return wrapList;</span><br><span class="line">    queue.offer(root);</span><br><span class="line">    while(!queue.isEmpty()) &#123;</span><br><span class="line">        int BreadthOfLevel = queue.size();</span><br><span class="line">        List&lt;Integer&gt; subList = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        for (int i=0; i&lt;BreadthOfLevel; i++) &#123;</span><br><span class="line">            if (queue.peek().left != null) queue.offer(queue.peek().left);</span><br><span class="line">            if (queue.peek().right != null) queue.offer(queue.peek().right);</span><br><span class="line">            subList.add(queue.poll().val);</span><br><span class="line">        &#125;</span><br><span class="line">        wrapList.add(subList);</span><br><span class="line">    &#125;</span><br><span class="line">    return wrapList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="297-Serialize-and-Deserialize-Binary-Tree"><a href="#297-Serialize-and-Deserialize-Binary-Tree" class="headerlink" title="297. Serialize and Deserialize Binary Tree"></a><em>297. Serialize and Deserialize Binary Tree</em></h3><p>Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.</p>
+<p>Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">You may serialize the following tree:</span><br><span class="line"></span><br><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   3</span><br><span class="line">     / \</span><br><span class="line">    4   5</span><br><span class="line"></span><br><span class="line">as &quot;[1,2,3,null,null,4,5]&quot;</span><br></pre></td></tr></table></figure></p>
+<p>Clarification: The above format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.</p>
+<h4 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution:"></a>Solution:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">public class Codec &#123;</span><br><span class="line"></span><br><span class="line">    // Encodes a tree to a single string.</span><br><span class="line">    public String serialize(TreeNode root) &#123;</span><br><span class="line">        if (root == null) return &quot;&quot;;</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        Queue&lt;TreeNode&gt; q = new LinkedList&lt;&gt;();</span><br><span class="line">        q.add(root);</span><br><span class="line">        while (!q.isEmpty()) &#123;</span><br><span class="line">            TreeNode node = q.poll();</span><br><span class="line">            if (node == null) &#123;</span><br><span class="line">                res.append(&quot;null,&quot;);</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            res.append(node.val + &quot;,&quot;);</span><br><span class="line">            q.add(node.left);</span><br><span class="line">            q.add(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Decodes your encoded data to tree.</span><br><span class="line">    public TreeNode deserialize(String data) &#123;</span><br><span class="line">        if (data == &quot;&quot;) return null;</span><br><span class="line">        String[] values = data.split(&quot;,&quot;);</span><br><span class="line">        Queue&lt;TreeNode&gt; q = new LinkedList&lt;&gt;();</span><br><span class="line">        TreeNode root = new TreeNode(Integer.parseInt(values[0]));</span><br><span class="line">        q.add(root);</span><br><span class="line">        for (int i = 1; i &lt; values.length; i++) &#123;</span><br><span class="line">            TreeNode parent = q.poll();</span><br><span class="line">            if (!values[i].equals(&quot;null&quot;)) &#123;</span><br><span class="line">                TreeNode left = new TreeNode(Integer.parseInt(values[i]));</span><br><span class="line">                parent.left = left;</span><br><span class="line">                q.add(left);</span><br><span class="line">            &#125;</span><br><span class="line">            if (!values[++i].equals(&quot;null&quot;)) &#123;</span><br><span class="line">                TreeNode right = new TreeNode(Integer.parseInt(values[i]));</span><br><span class="line">                parent.right = right;</span><br><span class="line">                q.add(right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -445,8 +460,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/24/binary-search/" rel="prev" title="binary-search">
-                binary-search <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/24/binary-search/" rel="prev" title="Binary Search">
+                Binary Search <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -525,7 +540,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -641,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#101-Symmetric-Tree"><span class="nav-number">1.</span> <span class="nav-text">101. Symmetric Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution"><span class="nav-number">1.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#102-Binary-Tree-Level-Order-Traversal"><span class="nav-number">2.</span> <span class="nav-text">102. Binary Tree Level Order Traversal</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-1"><span class="nav-number">2.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Application"><span class="nav-number">1.</span> <span class="nav-text">Application</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#101-Symmetric-Tree"><span class="nav-number">1.0.1.</span> <span class="nav-text">101. Symmetric Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#102-Binary-Tree-Level-Order-Traversal"><span class="nav-number">1.0.2.</span> <span class="nav-text">102. Binary Tree Level Order Traversal</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-1"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#297-Serialize-and-Deserialize-Binary-Tree"><span class="nav-number">1.0.3.</span> <span class="nav-text">297. Serialize and Deserialize Binary Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-2"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>

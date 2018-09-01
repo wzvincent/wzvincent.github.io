@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="Fundemental Solutions While Condition:start + 1 &amp;lt; end Middle Item:mid = (end - start) / 2 + start  Next Process:start = midend = mid&amp;nbsp;&amp;nbsp;   Problems">
+  <meta name="description" content="Fundemental Solutions While Condition:start + 1 &amp;lt; end Middle Item:mid = (end - start) / 2 + start  Next Process:start = midend = mid">
 <meta name="keywords" content="leetcode,Binary Search">
 <meta property="og:type" content="article">
-<meta property="og:title" content="binary-search">
+<meta property="og:title" content="Binary Search">
 <meta property="og:url" content="http://yoursite.com/2018/08/24/binary-search/index.html">
 <meta property="og:site_name" content="wzvincent">
-<meta property="og:description" content="Fundemental Solutions While Condition:start + 1 &amp;lt; end Middle Item:mid = (end - start) / 2 + start  Next Process:start = midend = mid&amp;nbsp;&amp;nbsp;   Problems">
+<meta property="og:description" content="Fundemental Solutions While Condition:start + 1 &amp;lt; end Middle Item:mid = (end - start) / 2 + start  Next Process:start = midend = mid">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-24T22:11:36.362Z">
+<meta property="og:updated_time" content="2018-08-28T03:29:55.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="binary-search">
-<meta name="twitter:description" content="Fundemental Solutions While Condition:start + 1 &amp;lt; end Middle Item:mid = (end - start) / 2 + start  Next Process:start = midend = mid&amp;nbsp;&amp;nbsp;   Problems">
+<meta name="twitter:title" content="Binary Search">
+<meta name="twitter:description" content="Fundemental Solutions While Condition:start + 1 &amp;lt; end Middle Item:mid = (end - start) / 2 + start  Next Process:start = midend = mid">
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>binary-search | wzvincent</title>
+  <title>Binary Search | wzvincent</title>
   
 
 
@@ -298,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">binary-search
+          <h1 class="post-title" itemprop="name headline">Binary Search
               
             
           </h1>
@@ -323,12 +323,24 @@
                 
               
 
-              <time title="Created: 2018-08-24 17:05:43 / Modified: 17:11:36" itemprop="dateCreated datePublished" datetime="2018-08-24T17:05:43-05:00">2018-08-24</time>
+              <time title="Created: 2018-08-24 17:05:43" itemprop="dateCreated datePublished" datetime="2018-08-24T17:05:43-05:00">2018-08-24</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-27 22:29:55" itemprop="dateModified" datetime="2018-08-27T22:29:55-05:00">2018-08-27</time>
               
             
           </span>
@@ -383,10 +395,31 @@
 <h1 id="Fundemental-Solutions"><a href="#Fundemental-Solutions" class="headerlink" title=" Fundemental Solutions"></a><font color="red"> Fundemental Solutions</font></h1></blockquote>
 <h4 id="While-Condition"><a href="#While-Condition" class="headerlink" title="While Condition:"></a>While Condition:</h4><p>start + 1 &lt; end</p>
 <h4 id="Middle-Item"><a href="#Middle-Item" class="headerlink" title="Middle Item:"></a>Middle Item:</h4><p>mid = (end - start) / 2 + start </p>
-<h4 id="Next-Process"><a href="#Next-Process" class="headerlink" title="Next Process:"></a>Next Process:</h4><p>start = mid<br>end = mid<br>&nbsp;<br>&nbsp;</p>
+<h4 id="Next-Process"><a href="#Next-Process" class="headerlink" title="Next Process:"></a>Next Process:</h4><p>start = mid<br>end = mid<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public int binarySearch(int nums, int target) &#123;</span><br><span class="line">  if (nums == null || nums.length == 0) return -1;</span><br><span class="line"></span><br><span class="line">  int start = 0, end = nums.length - 1;</span><br><span class="line"></span><br><span class="line">  while (start + 1 &lt; end) &#123;</span><br><span class="line">    int mid = (end - start) / 2 + start;</span><br><span class="line">    if (nums[mid] == target) &#123;</span><br><span class="line">      return mid;</span><br><span class="line">    &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">      start = mid;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      end = mid;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (nums[start] == target) &#123;</span><br><span class="line">    return start;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (nums[end] == target) &#123;</span><br><span class="line">    return end;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;<br>&nbsp;</p>
 <blockquote>
-<h1 id="Problems"><a href="#Problems" class="headerlink" title=" Problems "></a><font color="red"> Problems </font></h1><a id="more"></a>
-</blockquote>
+<h1 id="Problems"><a href="#Problems" class="headerlink" title=" Problems "></a><font color="red"> Problems </font></h1></blockquote>
+<h3 id="33-Search-in-Rotated-Sorted-Array"><a href="#33-Search-in-Rotated-Sorted-Array" class="headerlink" title="33. Search in Rotated Sorted Array"></a><em>33. Search in Rotated Sorted Array</em></h3><p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).</p>
+<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
+<p>You may assume no duplicate exists in the array.</p>
+<p>Your algorithm’s runtime complexity must be in the order of O(log n).</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [4,5,6,7,0,1,2], target = 0</span><br><span class="line">Output: 4</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public int search(int[] nums, int target) &#123;</span><br><span class="line">    if (nums == null || nums.length == 0) return -1;     </span><br><span class="line">    int start = 0, end = nums.length - 1;</span><br><span class="line">    </span><br><span class="line">    while (start + 1 &lt; end) &#123;</span><br><span class="line">        int mid = (end - start) / 2 + start;</span><br><span class="line">        if (target == nums[mid]) &#123;</span><br><span class="line">            return mid;</span><br><span class="line">        &#125;</span><br><span class="line">        if (nums[start] &lt; nums[mid]) &#123;</span><br><span class="line">            if (target &lt;= nums[mid] &amp;&amp; target &gt;= nums[start]) &#123;</span><br><span class="line">                end = mid;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                start = mid;</span><br><span class="line">            &#125;  </span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if (target &lt;= nums[end] &amp;&amp; target &gt;= nums[mid]) &#123;</span><br><span class="line">                start = mid;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                end = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if (nums[start] == target) &#123;</span><br><span class="line">        return start;</span><br><span class="line">    &#125;</span><br><span class="line">    if (nums[end] == target) &#123;</span><br><span class="line">        return end;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;<br>&nbsp;</p>
+<h3 id="33-Search-in-Rotated-Sorted-Array-1"><a href="#33-Search-in-Rotated-Sorted-Array-1" class="headerlink" title="33. Search in Rotated Sorted Array"></a><em>33. Search in Rotated Sorted Array</em></h3><p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).</p>
+<p>Find the minimum element.</p>
+<p>You may assume no duplicate exists in the array.<br><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,4,5,1,2] </span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution:"></a>Solution:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public int findMin(int[] nums) &#123;</span><br><span class="line">    if (nums == null || nums.length == 0) return 0;</span><br><span class="line">    if (nums.length == 1) return nums[0];</span><br><span class="line">    int start = 0, end = nums.length - 1;</span><br><span class="line">    while (start + 1 &lt; end) &#123;</span><br><span class="line">        int mid = start + (end - start) / 2;</span><br><span class="line">        if (mid &gt; 0 &amp;&amp; nums[mid] &lt; nums[mid - 1]) &#123;</span><br><span class="line">            return nums[mid];</span><br><span class="line">        &#125; else if (nums[mid] &lt; nums[end]) &#123;</span><br><span class="line">            end = mid;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            start = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (nums[start] &lt; nums[end]) &#123;</span><br><span class="line">        return nums[start];</span><br><span class="line">    &#125;</span><br><span class="line">    return nums[end];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;<br>&nbsp;</p>
+<h3 id="74-Search-a-2D-Matrix"><a href="#74-Search-a-2D-Matrix" class="headerlink" title="74. Search a 2D Matrix"></a><em>74. Search a 2D Matrix</em></h3><p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
+<ul>
+<li>Integers in each row are sorted from left to right.</li>
+<li>The first integer of each row is greater than the last integer of the previous row.</li>
+</ul>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">matrix = [</span><br><span class="line">  [1,   3,  5,  7],</span><br><span class="line">  [10, 11, 16, 20],</span><br><span class="line">  [23, 30, 34, 50]</span><br><span class="line">]</span><br><span class="line">target = 3</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure></p>
+<h4 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution:"></a>Solution:</h4><p>Treat this matrix as a sorted array.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public boolean searchMatrix(int[][] matrix, int target) &#123;</span><br><span class="line">    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return false;</span><br><span class="line">    int m = matrix[0].length, n = matrix.length;</span><br><span class="line">    int start = 0, end = m * n - 1;</span><br><span class="line">    while (start + 1 &lt; end) &#123;</span><br><span class="line">        int mid = start + (end - start) / 2;</span><br><span class="line">        int val = matrix[mid / m][mid % m];</span><br><span class="line">        if (target == val) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else if (target &gt; val) &#123;</span><br><span class="line">            start = mid;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            end = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (matrix[start / m][start % m] == target || matrix[end / m][end % m] == target) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -431,6 +464,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/28/binary-tree/" rel="prev" title="binary-tree">
+                binary-tree <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -508,7 +545,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -624,7 +661,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Fundemental-Solutions"><span class="nav-number">1.</span> <span class="nav-text"> Fundemental Solutions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#While-Condition"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">While Condition:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Middle-Item"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">Middle Item:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Next-Process"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Next Process:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Problems"><span class="nav-number">2.</span> <span class="nav-text"> Problems </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Fundemental-Solutions"><span class="nav-number">1.</span> <span class="nav-text"> Fundemental Solutions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#While-Condition"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">While Condition:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Middle-Item"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">Middle Item:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Next-Process"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Next Process:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Problems"><span class="nav-number">2.</span> <span class="nav-text"> Problems </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#33-Search-in-Rotated-Sorted-Array"><span class="nav-number">2.0.1.</span> <span class="nav-text">33. Search in Rotated Sorted Array</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-Search-in-Rotated-Sorted-Array-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">33. Search in Rotated Sorted Array</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-1"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#74-Search-a-2D-Matrix"><span class="nav-number">2.0.3.</span> <span class="nav-text">74. Search a 2D Matrix</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-2"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
