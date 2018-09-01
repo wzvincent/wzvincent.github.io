@@ -1,5 +1,5 @@
 ---
-title: divided-conquer
+title: Divided & Conquer
 date: 2018-07-16 12:27:14
 categories: 
     - algorithm
