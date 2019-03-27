@@ -1,5 +1,5 @@
 ---
-title: binary-tree
+title: Binary Tree
 date: 2018-08-28 15:17:44
 categories: 
     - algorithm

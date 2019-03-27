@@ -1,0 +1,36 @@
+---
+title: Ember.js LearnNote
+date: 2019-03-27 14:50:43
+categories: 
+    - front end
+tags: 
+    - javascript
+    - js learnNote
+    - ember.js
+---
+# Overview
+![](ember-core-concepts.png)
+### Router
+<!-- more -->
+When *url* is changed, the first thing that happens is that the Ember **router maps the URL to a route handler**.
+The route handler then typically does two things:
+
+* It renders a template.
+* It loads a **model** that is then available to the **template**.
+### Model
+Models represent persistent state.
+### Hooks
+In Ember, we use the term *hook* for methods that are **automatically called within the Ember application**. These are methods that can be expected to be called automatically, rather than having to call them specifically.
+
+In the following example, the **didRender()** component lifecycle hook is used to log "I rendered!" to the console after each time the component is rendered.
+
+```
+import Component from '@ember/component';
+
+export default Component.extend({
+  didRender() {
+    this._super(...arguments);
+    console.log('I rendered!');
+  }
+});
+```
