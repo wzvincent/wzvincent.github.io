@@ -110,7 +110,7 @@ export default Model.extend({
   comments: hasMany('comment', { async: true }),
 });
 ```
-To access the blog post's title you can simply write blogPost.title, whereas only the syntax ```blogPost.get('comments')``` will return the post's comments.
+To access the blog post's title you can simply write blogPost.title, whereas only the syntax **blogPost.get('comments')** will return the post's comments.
 
 Always use Ember's **set()** method to update property values. It will propagate the value change to computed properties, observers, templates, etc. If you "just" use JavaScript's dot notation to update a property value, computed properties won't recalculate, observers won't fire and templates won't update.
 
