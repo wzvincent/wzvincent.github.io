@@ -117,7 +117,7 @@
 <meta property="og:description" content="Overview Router">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/03/27/ember-js/ember-core-concepts.png">
-<meta property="og:updated_time" content="2019-03-27T20:26:32.750Z">
+<meta property="og:updated_time" content="2019-04-14T02:27:04.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ember.js LearnNote">
 <meta name="twitter:description" content="Overview Router">
@@ -325,12 +325,24 @@
                 
               
 
-              <time title="Created: 2019-03-27 14:50:43 / Modified: 15:26:32" itemprop="dateCreated datePublished" datetime="2019-03-27T14:50:43-05:00">2019-03-27</time>
+              <time title="Created: 2019-03-27 14:50:43" itemprop="dateCreated datePublished" datetime="2019-03-27T14:50:43-05:00">2019-03-27</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-13 21:27:04" itemprop="dateModified" datetime="2019-04-13T21:27:04-05:00">2019-04-13</time>
               
             
           </span>
@@ -390,6 +402,19 @@
 </ul>
 <p>In the following example, the <strong>didRender()</strong> component lifecycle hook is used to log “I rendered!” to the console after each time the component is rendered.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import Component from &apos;@ember/component&apos;;</span><br><span class="line"></span><br><span class="line">export default Component.extend(&#123;</span><br><span class="line">  didRender() &#123;</span><br><span class="line">    this._super(...arguments);</span><br><span class="line">    console.log(&apos;I rendered!&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Ember-Object"><a href="#Ember-Object" class="headerlink" title="Ember Object"></a>Ember Object</h3><p>Arrays and objects defined directly on any Ember.Object are shared across all instances of that class.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import &#123; A &#125; from &apos;@ember/array&apos;;</span><br><span class="line">import EmberObject from &apos;@ember/object&apos;;</span><br><span class="line"></span><br><span class="line">const Person = EmberObject.extend(&#123;</span><br><span class="line">  shoppingList: A([&apos;eggs&apos;, &apos;cheese&apos;])</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Person.create(&#123;</span><br><span class="line">  name: &apos;Stefan Penner&apos;,</span><br><span class="line">  addItem() &#123;</span><br><span class="line">    this.shoppingList.pushObject(&apos;bacon&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Person.create(&#123;</span><br><span class="line">  name: &apos;Robert Jackson&apos;,</span><br><span class="line">  addItem() &#123;</span><br><span class="line">    this.shoppingList.pushObject(&apos;sausage&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// Stefan and Robert both trigger their addItem.</span><br><span class="line">// They both end up with: [&apos;eggs&apos;, &apos;cheese&apos;, &apos;bacon&apos;, &apos;sausage&apos;]</span><br></pre></td></tr></table></figure>
+<p>To avoid this behavior, it is encouraged to initialize those arrays and object properties during init(). Doing so ensures each instance will be unique.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import &#123; A &#125; from &apos;@ember/array&apos;;</span><br><span class="line">import EmberObject from &apos;@ember/object&apos;;</span><br><span class="line"></span><br><span class="line">const Person = EmberObject.extend(&#123;</span><br><span class="line">  init() &#123;</span><br><span class="line">    this.set(&apos;shoppingList&apos;, A([&apos;eggs&apos;, &apos;cheese&apos;]));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Person.create(&#123;</span><br><span class="line">  name: &apos;Stefan Penner&apos;,</span><br><span class="line">  addItem() &#123;</span><br><span class="line">    this.shoppingList.pushObject(&apos;bacon&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Person.create(&#123;</span><br><span class="line">  name: &apos;Robert Jackson&apos;,</span><br><span class="line">  addItem() &#123;</span><br><span class="line">    this.shoppingList.pushObject(&apos;sausage&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// Stefan [&apos;eggs&apos;, &apos;cheese&apos;, &apos;bacon&apos;]</span><br><span class="line">// Robert [&apos;eggs&apos;, &apos;cheese&apos;, &apos;sausage&apos;]</span><br></pre></td></tr></table></figure>
+<h3 id="get-amp-set"><a href="#get-amp-set" class="headerlink" title="get() &amp; set()"></a>get() &amp; set()</h3><p>When reading a property value of an object, you can in most cases use the common JavaScript dot notation, <em>e.g. myObject.myProperty.</em></p>
+<p><strong>Ember proxy objects</strong> are the one big exception to this rule. If you’re working with Ember proxy objects, including promise proxies for async relationships in Ember Data, you have to use Ember’s <strong>get()</strong> accessor method to read values.</p>
+<p>Let’s look at the following blogPost Ember Data model:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import Model from &apos;ember-data/model&apos;;</span><br><span class="line">import attr from &apos;ember-data/attr&apos;;</span><br><span class="line">import &#123; hasMany &#125; from &apos;ember-data/relationships&apos;;</span><br><span class="line"></span><br><span class="line">export default Model.extend(&#123;</span><br><span class="line">  title: attr(&apos;string&apos;),</span><br><span class="line">  body: attr(&apos;string&apos;),</span><br><span class="line">  comments: hasMany(&apos;comment&apos;, &#123; async: true &#125;),</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>To access the blog post’s title you can simply write blogPost.title, whereas only the syntax <figure class="highlight plain"><figcaption><span>will return the post's comments.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Always use Ember&apos;s **set()** method to update property values. It will propagate the value change to computed properties, observers, templates, etc. If you &quot;just&quot; use JavaScript&apos;s dot notation to update a property value, computed properties won&apos;t recalculate, observers won&apos;t fire and templates won&apos;t update.</span><br></pre></td></tr></table></figure></p>
+<p>import EmberObject from ‘@ember/object’;</p>
+<p>const Person = EmberObject.extend({<br>  name: ‘Robert Jackson’<br>});</p>
+<p>let person = Person.create();</p>
+<p>person.name; // ‘Robert Jackson’<br>person.set(‘name’, ‘Tobias Fünke’);<br>person.name; // ‘Tobias Fünke’<br><code>`</code></p>
 
       
     </div>
@@ -631,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Router"><span class="nav-number">1.0.1.</span> <span class="nav-text">Router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model"><span class="nav-number">1.0.2.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hooks"><span class="nav-number">1.0.3.</span> <span class="nav-text">Hooks</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Router"><span class="nav-number">1.0.1.</span> <span class="nav-text">Router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model"><span class="nav-number">1.0.2.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hooks"><span class="nav-number">1.0.3.</span> <span class="nav-text">Hooks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ember-Object"><span class="nav-number">1.0.4.</span> <span class="nav-text">Ember Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get-amp-set"><span class="nav-number">1.0.5.</span> <span class="nav-text">get() &amp; set()</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
