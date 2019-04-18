@@ -127,3 +127,246 @@ person.name; // 'Robert Jackson'
 person.set('name', 'Tobias Fünke');
 person.name; // 'Tobias Fünke'
 ```
+
+### reopen() method
+
+You don't need to define a class all at once. You can reopen a class and define new properties using the *reopen()* method.
+```
+Person.reopen({
+  isPerson: true
+});
+
+Person.create().get('isPerson'); // true
+```
+
+When using *reopen()*, you can also override existing methods and call *this._super*
+```
+Person.reopen({
+  // override `say` to add an ! at the end
+  say(thing) {
+    this._super(thing + '!');
+  }
+});
+```
+
+*reopen()* is used to **add instance methods and properties** that are **shared across all instances** of a class. It does not add methods and properties to a particular instance of a class as in vanilla JavaScript (without using prototype).
+
+But when you need to add static methods or static properties to the class itself you can use *reopenClass()*.
+```
+// add static property to class
+Person.reopenClass({
+  isPerson: false
+});
+// override property of existing and future Person instances
+Person.reopen({
+  isPerson: true
+});
+
+Person.isPerson; // false - because it is static property created by `reopenClass`
+Person.create().get('isPerson'); // true
+```
+### Computed properties
+In a nutshell, computed properties let you **declare functions as properties**. You create one by defining a computed property as a function, which Ember will automatically call when you ask for the property. You can then use it the same way you would any normal, static property.
+```
+import EmberObject, { computed } from '@ember/object';
+
+Person = EmberObject.extend({
+  // these will be supplied by `create`
+  firstName: null,
+  lastName: null,
+
+  fullName: computed('firstName', 'lastName', function() {
+    return `${this.firstName} ${this.lastName}`;
+  })
+});
+
+let ironMan = Person.create({
+  firstName: 'Tony',
+  lastName:  'Stark'
+});
+
+ironMan.fullName; // "Tony Stark"
+```
+#### Computed properties only recompute when they are consumed
+A computed property will only recompute its value when it is consumed. Properties are consumed in two ways:
+
+- By being accessed, for example ironMan.fullName
+- By being referenced in a handlebars template that is currently being rendered, for example {{ironMan.fullName}}
+```
+import Ember from 'ember';
+
+…
+  fullName: computed('firstName', 'lastName', function() {
+    console.log('compute fullName'); // track when the property recomputes
+    return `${this.firstName} ${this.lastName}`;
+  })
+…
+```
+```
+let ironMan = Person.create({
+  firstName: 'Tony',
+  lastName:  'Stark'
+});
+
+ironMan.fullName; // 'compute fullName'
+ironMan.set('firstName', 'Bruce') // no console output
+
+ironMan.fullName; // 'compute fullName'
+ironMan.fullName; // no console output since dependencies have not changed
+
+```
+#### Multiple dependents on the same object
+####!!! important
+In the previous example, the *fullName* computed property depends on two other properties of the same object.
+However, you may find that you have to observe the properties of a different object.
+
+For example, look at this computed property:
+```
+import EmberObject, { computed } from '@ember/object';
+
+const Home = EmberObject.extend({
+  location: {
+    streetName: 'Evergreen Terrace',
+    streetNumber: 742
+  },
+
+  address: computed('location.streetName', 'location.streetNumber', function() {
+    return `${this.location.streetNumber} ${this.location.streetName}`;
+  })
+});
+
+let home = Home.create()
+
+home.address // 742 Evergreen Terrace
+home.set('location.streetNumber', 744)
+home.address // 744 Evergreen Terrace
+```
+It is important to observe an object's properties, not the object itself that has properties nested inside. If the object reference *location* is used as a dependent key, the computed property will not recalculate when the *streetName* or *streetNumber* properties change.
+```
+import EmberObject, { computed } from '@ember/object';
+
+const Home = EmberObject.extend({
+  location: {
+    streetName: 'Evergreen Terrace',
+    streetNumber: 742
+  },
+
+  address: computed('location', function() { // here is the difference
+    return `${this.location.streetNumber} ${this.location.streetName}`;
+  })
+});
+
+let home = Home.create()
+
+home.address // 742 Evergreen Terrace
+home.set('location.streetNumber', 744)
+home.address // 742 Evergreen Terrace
+home.set('location', {
+  streetName: 'Evergreen Terrace',
+  streetNumber: 744
+})
+home.address // 744 Evergreen Terrace
+```
+
+Since both *streetName* and *streetNumber* are properties on the location object, we can use a short-hand syntax called brace expansion to declare the dependents keys. You surround the dependent properties with braces (**{}**), and separate with commas, like so:
+```
+import EmberObject, { computed } from '@ember/object';
+
+const Home = EmberObject.extend({
+  location: {
+    streetName: 'Evergreen Terrace',
+    streetNumber: 742
+  },
+
+  address: computed('location.{streetName,streetNumber}', function() {
+    return `${this.location.streetNumber} ${this.location.streetName}`;
+  })
+});
+```
+#### Description For Computed Properties
+```
+import EmberObject, { computed } from '@ember/object';
+
+Person = EmberObject.extend({
+  firstName: null,
+  lastName: null,
+  age: null,
+  country: null,
+
+  fullName: computed('firstName', 'lastName', function() {
+    return `${this.firstName} ${this.lastName}`;
+  }),
+
+  // description
+  description: computed('fullName', 'age', 'country', function() {
+    return `${this.fullName}; Age: ${this.age}; Country: ${this.country}`;
+  })
+});
+
+let captainAmerica = Person.create({
+  firstName: 'Steve',
+  lastName: 'Rogers',
+  age: 80,
+  country: 'USA'
+});
+
+captainAmerica.get('description'); // "Steve Rogers; Age: 80; Country: USA"
+
+```
+#### Dymamic Updating
+Computed properties, by default, observe any changes made to the properties they depend on and are dynamically updated when they're called. Let's use computed properties to dynamically update.
+```
+captainAmerica.set('firstName', 'William');
+
+captainAmerica.description; // "William Rogers; Age: 80; Country: USA"
+```
+So this change to *firstName* was observed by *fullName* computed property, which was itself observed by the *description* property.
+
+Setting any dependent property will **propagate changes through any computed properties that depend on them**, all the way down the chain of computed properties you've created.
+
+#### Setting Computed Properties
+You can also define what Ember should do when setting a computed property. If you try to set a computed property, it will be invoked with the key (property name), and the value you want to set it to. You must return the new intended value of the computed property from the setter function.
+```
+import EmberObject, { computed } from '@ember/object';
+
+Person = EmberObject.extend({
+  firstName: null,
+  lastName: null,
+
+  fullName: computed('firstName', 'lastName', {
+    get(key) {
+      return `${this.firstName} ${this.lastName}`;
+    },
+    set(key, value) {
+      let [firstName, lastName] = value.split(/\s+/);
+      this.set('firstName', firstName);
+      this.set('lastName',  lastName);
+      return value;
+    }
+  })
+});
+
+
+let captainAmerica = Person.create();
+captainAmerica.set('fullName', 'William Burnside');
+captainAmerica.firstName; // William
+captainAmerica.lastName; // Burnside
+```
+### Computed Properties Macros
+Some types of computed properties are very common. Ember provides a number of computed property macros, which are shorter ways of expressing certain types of computed property.
+
+In this example, the two computed properties are equivalent:
+```
+import EmberObject, { computed } from '@ember/object';
+import { equal } from '@ember/object/computed';
+
+Person = EmberObject.extend({
+  fullName: 'Tony Stark',
+
+  isIronManLongWay: computed('fullName', function() {
+    return this.fullName === 'Tony Stark';
+  }),
+
+  isIronManShortWay: equal('fullName', 'Tony Stark')
+});
+```
