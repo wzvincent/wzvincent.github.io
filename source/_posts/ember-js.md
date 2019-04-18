@@ -352,7 +352,7 @@ captainAmerica.set('fullName', 'William Burnside');
 captainAmerica.firstName; // William
 captainAmerica.lastName; // Burnside
 ```
-### Computed Properties Macros
+#### Computed Properties Macros
 Some types of computed properties are very common. Ember provides a number of computed property macros, which are shorter ways of expressing certain types of computed property.
 
 In this example, the two computed properties are equivalent:
